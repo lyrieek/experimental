@@ -1,0 +1,21 @@
+'use strict';
+
+describe('Controller: ${DemoName}Ctrl', function () {
+
+  // load the controller's module
+  beforeEach(module('angulardemoApp'));
+
+  var ${DemoName}Ctrl, scope;
+
+  // Initialize the controller and a mock scope
+  beforeEach(inject(function ($controller, $rootScope) {
+    scope = $rootScope.$new();
+    ${DemoName}Ctrl = $controller('${DemoName}Ctrl', {
+      $scope: scope
+    });
+  }));
+
+  it('should ...', function () {
+    expect(1).toEqual(1);
+  });
+});

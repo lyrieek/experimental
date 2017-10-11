@@ -1,0 +1,15 @@
+'use strict';
+
+
+angular.module('angulardemoApp').controller('${DemoName}Ctrl',
+	function ($rootScope,$scope,$timeout,$window, $http,$translate,$state,$stateParams,prompt2,parseException,parseDelException) {
+	
+	$timeout(function(){
+		$translate([]).then(function (translations) {
+			
+			//${demoName} controller code
+			
+		});
+	});
+	
+});

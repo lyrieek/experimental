@@ -1,0 +1,7 @@
+::
+fn:main;
+printf('hello world');
+cd();
+exit(0);
+printf('hello world');
+::

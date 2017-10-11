@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Files</title>
+<link type="text/css" href="css/zui.min.css" rel="stylesheet" />
+<link type="text/css" href="css/font-awesome.min.css" rel="stylesheet" />
+
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="js/zui.min.js"></script>
+<style type="text/css">
+html, body {
+	height: 100%;
+}
+
+#path {
+	line-height: 0px;
+	height: 3%;
+}
+
+.list-item {
+	padding-bottom: 6px;
+	padding-top: 6px;
+}
+
+.list-item>td:FIRST-CHILD{
+	font-size: 15px;
+}
+
+.list-item:hover {
+	cursor: pointer;
+	background-color: rgb(100, 100, 250);
+}
+
+#pathGroup{
+    height: 3%;
+}
+
+#pathGroup>span {
+	cursor: pointer;
+}
+
+.pathDiv {
+	margin-right: 2px;
+	padding: 3px 7px 2px 7px;
+	font-size: 12px;
+}
+</style>
+
+<script type="text/javascript">
+	var fileControlPath,list, previous, tempUrl = "/", change = false;
+	function go(url) {
+		$("#nullBox").hide();
+		change = true;
+		previous = tempUrl;
+		tempUrl = url;
+		$("#root").html("");
+		changePath(url);
+		$.post("/cat/files.do", {
+			"url" : url
+		}, function(data) {
+			if (data == null) {
+				$("#nullBox").show();
+				var timeURL = tempUrl;
+				change = false;
+				setTimeout(function() {
+					if (!change) {
+						$("#nullBox").hide();
+						go(previous);
+					}
+				}, 2000);
+				return;
+			}
+			list = data;
+			for ( var i in data) {
+				appendRow(data[i]);
+			}
+		}, "json");
+	}
+	function changePath(url) {
+		$("#path").val(url);
+		var paths = url.split("/");
+		$("#pathGroup").html("").append(
+				"<span title='/' class='label label-primary pathDiv'>/</span>");
+		var arr = "";
+		for ( var item in paths) {
+			if (paths[item].length != 0) {
+				arr = arr + "/" + paths[item];
+				$("#pathGroup").append(
+						"<span title='"+arr+"' class='label label-primary pathDiv'>"
+								+ paths[item] + "</span>/");
+			}
+		}
+	}
+	function getIcon(flag,t,f){
+		return flag ? '<i class="fa fa-'+t+'"></i>' : '<i class="fa fa-'+f+'"></i>';
+	}
+	function appendRow(row) {
+		var templateRow = $($("#templateRow").html()).clone().attr("title",
+				row.path);
+		templateRow.find(".name").html(getIcon(row.type == "dir","folder-o","file") + "&nbsp" + row.name);
+		templateRow.find(".size").html(row.size);
+		templateRow.find(".canWrite").html(getIcon(row.canWrite,"check","times"));
+		if (!row.canRead || row.size == null) {
+			templateRow.find(".canRead").html('<i class="fa fa-close"></i>');
+			templateRow.attr("disabled", "disabled").css({
+				"background" : "#efefff",
+				"cursor" : "default"
+			});
+			templateRow.find(".deleteFile").hide();
+		} else {
+			templateRow.find(".canRead").html('<i class="fa fa-check"></i>');
+		}
+		templateRow.find(".lastDate").html(row.lastDate);
+		if (row.type == "dir") {
+			templateRow.addClass("item-dir");
+		} else if (row.read) {
+			templateRow.addClass("item-file");
+		}
+		$("#root").append(templateRow);
+	}
+	function loadText() {
+		$.post("/cat/readFile.do", {
+			"path" : fileControlPath
+		}, function(context) {
+			$("#fileModal .loading").hide();
+			$("#fileText").show().val(context);
+		});
+	}
+	$(function() {
+		go("/");
+		$("#path").keydown(function(e) {
+			if (e.key == "Enter") {
+				go($("#path").val());
+			}
+		});
+		$("#fileSave").click(function(){
+			$.post("/cat/updateFile.do", {
+				"path" : fileControlPath,
+				"context" : $("#fileText").val()
+			}, function(result) {
+				new $.zui.Messager(result, {
+			        icon: result == "SUCCESS" ? 'check' : 'times'
+			    }).show();
+				loadText();
+			});
+			
+			//$('#fileModal').modal('hide');
+		});
+		$(document).on("click", ".pathDiv,#root .item-dir", function() {
+			if ($(this).is("[disabled='disabled']")) {
+				return;
+			}
+			go($(this).attr("title"));
+		});
+		$(document).on("click", "#root .item-file", function() {
+			var path = $(this).attr("title");
+			fileControlPath = path;
+			$("#fileTitle").html(path);
+			$('#fileModal').modal({
+				show : true,
+				moveable : true
+			});
+			$("#fileModal .loading").show();
+			$("#fileText").hide();
+			setTimeout(loadText, 300);
+		});
+		$(document).on("click", ".deleteFile", function(e) {
+			var selectRow = $(this).parent().parent();
+			$.post("/cat/deleteFile.do",{
+				"path":selectRow.attr("title")
+			},function(result){
+				new $.zui.Messager(result, {
+			        icon: result == "SUCCESS" ? 'check' : 'times'
+			    }).show();
+				if (result == "SUCCESS") {
+					selectRow.remove();
+				}
+			});
+			e.stopPropagation();
+			if ( e && e.preventDefault) 
+		   		e.preventDefault(); 
+		    else 
+		   		window.event.returnValue = false; 
+		});
+	});
+</script>
+<script id="templateRow" type="text/template">
+		<tr class='list-item'>
+			<td class="name"></td>
+			<td class="canWrite"></td>
+			<td class="canRead"></td>
+			<td class="size"></td>
+			<td class="lastDate"></td>
+			<td>
+				<input class="btn btn-sm btn-danger deleteFile" value="Delete" type="button" />
+			</td>
+		</tr>
+</script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse" style="margin-bottom: 2px;"
+		role="navigation">
+		<ul class="nav navbar-nav nav-justified">
+			<li><a onclick="go('/')">Root</a></li>
+			<li><a onclick="go(previous)">Previous</a></li>
+		</ul>
+	</nav>
+	<div id="pathGroup"></div>
+	<input id="path" class="form-control form-focus" autofocus>
+	<div style="overflow: auto;height:85%;border: solid gray 1px;border-radius: 5px;">
+		<table class="table table-bordered ">
+			<thead>
+				<tr>
+					<th>File Name</th>
+					<th style="width: 100px;">Can Read</th>
+					<th style="width: 100px;">Can Write</th>
+					<th>File Size</th>
+					<th>Last Date</th>
+					<th>Operation</th>
+				</tr>
+			</thead>
+			<tbody id="root"></tbody>
+		</table>
+	</div>
+
+	<div id="nullBox" style="display: none">
+		<div class="alert alert-danger-inverse with-icon">
+			<i class="icon-remove-sign"></i>
+			<div class="content">
+				<p>This is NULL!&nbsp;Return in 2 seconds..</p>
+				<p>
+					<a style="" onclick="$('#nullBox').hide();go(previous);">Right
+						away</a>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div id="fileModal" class="modal fade">
+		<div class="modal-dialog" style="height: 70%; width: 80%;">
+			<div class="modal-content" style="height: 100%;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">×</span><span class="sr-only">关闭</span>
+					</button>
+					<h4 id="fileTitle" class="modal-title">
+						<i class="fa fa-spinner"></i>
+					</h4>
+				</div>
+				<div id="fileContext" class="modal-body"
+					style="overflow: scroll; height: 70%;">
+					<i
+						style="display: none; text-align: center; margin: 0 auto; width: 100%;"
+						class="loading fa fa-spin fa-5x fa-spinner"></i>
+					<textarea id="fileText" class="form-control" style="height: 100%;"></textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button id="fileSave" type="button" class="btn btn-success">Save</button>
+					<button id="fileSave" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

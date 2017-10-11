@@ -1,0 +1,15 @@
+'use strict';
+
+angular.module('angulardemoApp').config(function ($stateProvider) {
+  $stateProvider.state('${demoName}', {
+    views: {
+      ${demoName}tab: {
+        url: '/${demoName}',
+        templateUrl: 'app/${demoName}/${demoName}.html',
+        controller: '${DemoName}Ctrl'
+      }
+    },
+    params: { menuItem: null },
+    sticky: true
+  });
+});

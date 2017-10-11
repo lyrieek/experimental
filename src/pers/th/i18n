@@ -1,0 +1,34 @@
+
+
+
+a
+                    $scope.CodeRegExp = translations.CodeRegExp;
+        $scope.Locale = translations.Locale;
+        $scope.RoleCode = translations.RoleCode;
+        $scope.defaultPasswordInfo = translations.defaultPasswordInfo;
+        $scope.required = translations.required;
+        $scope.ExceptionDialog = translations.ExceptionDialog;
+        $scope.confirmLabel = translations.Confirm;
+        $scope.Delete = translations.Delete;
+        $scope.Cancel = translations.Cancel;
+        $scope.DeleteItem = translations.DeleteItem;
+        $scope.WarningDialog = translations.WarningDialog;
+        $scope.APP2001 = translations.APP2001;
+                    $scope.APP2002 = translations.APP2002;
+                    $scope.ImportTable = translations.ImportTable;
+                    $scope.ImportTableName = translations.ImportTableName;
+                    $scope.ImportTableLabel = translations.ImportTableLabel;
+                    $scope.ImportTableRemark = translations.ImportTableRemark;
+
+                    $scope.ImportTableColLine = translations.ImportTableColLine;
+                    $scope.ImportTableColName = translations.ImportTableColName;
+                    $scope.ImportTableColLabel = translations.ImportTableColLabel;
+                    $scope.ImportTableColDataType =
+                        translations.ImportTableColDataType;
+                    $scope.ImportTableColPkSequence =
+                        translations.ImportTableColPkSequence;
+                    $scope.ImportTableColMustInput =
+                        translations.ImportTableColMustInput;
+                    $scope.ImportTableCol = translations.ImportTableCol;
+                    $scope.Instruction = translations.Instruction;
+                    $scope.EDI_IMPORT_TABLE_FK1 = translations.EDI_IMPORT_TABLE_FK1;

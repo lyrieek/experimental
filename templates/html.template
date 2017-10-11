@@ -1,0 +1,9 @@
+<!-- ${DemoName} -->
+
+<div>
+  <input kendo-autocomplete />
+</div>
+
+<script type="text/x-kendo-tmpl" id="template">
+	
+ </script>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Files</title>
+<link type="text/css" href="css/zui.min.css" rel="stylesheet" />
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="js/zui.min.js"></script>
+<style type="text/css">
+#path{
+    line-height: 0px;
+    height:21px;
+}
+
+.list-item{
+    padding-bottom: 6px;
+    padding-top: 6px;
+}
+
+.list-item:hover{
+	cursor: pointer;
+	background-color: rgb(100,100,250);
+}
+
+#pathGroup>span{
+	cursor: pointer;
+}
+
+.pathDiv{
+	margin-right: 2px;
+	padding: 3px 7px 2px 7px;
+    font-size: 12px;
+}
+</style>
+
+<script type="text/javascript">
+	var list,previous,tempUrl = "/",change=false;
+	function go(url){
+		$("#nullBox").hide();
+		change=true;
+		previous = tempUrl;
+		tempUrl = url;
+		$("#root").html("");
+		changePath(url);
+		$.post("/cat/files.do",{"url":url},function(data){
+			if (data == null) {
+				$("#nullBox").show();
+				var timeURL=tempUrl;
+				change=false;
+				setTimeout(function(){
+					if (!change) {
+						$("#nullBox").hide();
+						go(previous);
+					}
+				},2000);
+				return;
+			}
+			list = data;
+			for (var i in data) {
+				appendRow(data[i]);
+			}
+		},"json");
+	}
+	function changePath(url){
+		$("#path").val(url);
+		var paths = url.split("/");
+		$("#pathGroup").html("").append("<span title='/' class='label label-primary pathDiv'>/</span>");
+		var arr = "";
+		for (var item in paths) {
+			if (paths[item].length != 0) {
+				arr=arr+"/"+paths[item];
+				$("#pathGroup").append("<span title='"+arr+"' class='label label-primary pathDiv'>"+paths[item]+"</span>");
+			}
+		}
+		if ($("#pathGroup").children().size() <= 1) {
+			$("#pathGroup").html("");
+		}
+	}
+	function appendRow(row){
+		var templateRow = $("#templateRow").clone().html(row.name).show().attr("title",row.path);
+		$("#root").append(templateRow);
+	}
+	$(function() {
+		go("/");
+		$("#path").keydown(function(e){
+			if (e.key == "Enter") {
+				go($("#path").val());
+			}
+		});
+		$(document).on("click", ".pathDiv,#root>.list-item", function(){
+			go($(this).attr("title"));
+		});
+		/*
+		$(document).on("click","#root>.list-item",function() {
+			go($(this).attr("title"));
+		});*/
+	});
+</script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse" style="margin-bottom: 2px;" role="navigation">
+	  <ul class="nav navbar-nav nav-justified">
+	    <li><a onclick="go('/')">Root</a></li>
+	    <li><a onclick="go(previous)">Previous</a></li>
+	  </ul>
+	</nav>
+	<div id="pathGroup"></div>
+	<input id="path" class="form-control form-focus" autofocus>
+	<ul class="list-group scrollbar-hover" id="root"></ul>
+	<ul style="display: none;">
+		<li id="templateRow" class='list-group-item list-item'></li>
+	</ul>
+	<div id="nullBox" style="display: none">
+		<div class="alert alert-danger-inverse with-icon">
+		  <i class="icon-remove-sign"></i>
+		  <div class="content">
+		  	<p>This is NULL!&nbsp;Return in 2 seconds..</p>
+		  	<p><a style="" onclick="$('#nullBox').hide();go(previous);">Right away</a></p>
+		  </div>
+		</div>
+	</div>
+</body>
+</html>
