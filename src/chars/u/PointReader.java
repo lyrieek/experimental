@@ -28,11 +28,41 @@ public class PointReader {
 	}
 
 	public static void main(String[] args) {
-		PointReader pReader = new PointReader(FileReader.reader("src//pers//th//i18n"));
+		String state = "begin";
+		PointReader pReader = new PointReader(FileReader.reader("src//pers//th//i18n.txt"));
 		pReader.saveRegex("\\S+");
+		Variables vars = new Variables();
+		StringBuffer block = new StringBuffer();
 		while (pReader.pushRegex()) {
-			System.out.println(pReader.location() + ">>" + pReader.line() + ">>" + pReader.column() + ":" + pReader.item());
+			String item = pReader.item();
+
+			if (state.equals("begin")) {
+				block.setLength(0);
+				if (item.startsWith("$")) {
+					state = "define";
+					String field = pReader.regexItem("[A-Za-z]{1,}([0-9]*)?");
+					vars.add(field);
+				}
+				if (item.startsWith(":")) {
+					System.out.println(vars.get(item.substring(1)));
+					state = "begin";
+				}
+			}
+
+			if (state.equals("define")) {
+				if (item.endsWith(";")) {
+					item = item.substring(0, item.length() - 1);
+					vars.update(DataValue.reverse(item));
+					state = "begin";
+				}
+			}
+			
+			
+			// System.out.println(pReader.location() + ">>" + pReader.line() +
+			// ">>" + pReader.column() + ":" + pReader.item());
+
 		}
+		System.out.println(vars);
 	}
 
 	public int line() {
@@ -41,10 +71,8 @@ public class PointReader {
 
 	public int column() {
 		int lastLine = before().lastIndexOf(System.lineSeparator());
-		if (lastLine == -1) {
-			lastLine = 0;
-		}
-		return point - lastLine + 1;
+		lastLine = (lastLine == -1) ? 0 : lastLine + 2;
+		return point - lastLine;
 	}
 
 	/**
@@ -81,6 +109,14 @@ public class PointReader {
 		}
 		push(matcher.start(), matcher.group());
 		return true;
+	}
+
+	public String regexItem(String regex) {
+		Matcher matcher = Pattern.compile(regex).matcher(item);
+		if (matcher.find()) {
+			return matcher.group();
+		}
+		return null;
 	}
 
 	public String regex(String regex) {
