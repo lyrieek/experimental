@@ -3,6 +3,7 @@ package pers.th.util;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+
+import org.apache.commons.io.IOUtils;
 
 public class FileReader {
 
@@ -32,9 +35,8 @@ public class FileReader {
 		}
 	}
 	
-	public static void main(String[] args) {
-		String s = reader("G:/th/CmsApplicationTest/src/pers/th/i18n");
-		for (String item : s.split(System.lineSeparator())) {
+	public static void main(String[] args) throws Exception {
+		for (String item : IOUtils.toString(new FileInputStream("G:/th/CmsApplicationTest/src/pers/th/i18n.txt")).split(System.lineSeparator())) {
 			String[] field = item.replace("$scope.", "").replace("translations.", "").replace(";", "").split("=");
 			if (field.length != 2) {
 				continue;

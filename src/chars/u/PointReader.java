@@ -1,16 +1,23 @@
 package chars.u;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 import pers.th.util.FileReader;
 
 public class PointReader {
-
+	
+//	private TextPoint textPoint;
+	
 	private Integer point;
+	private String item;
 	private String searchChar;
 	private String source;
-	private String item;
 	private int count = 0;
 	private boolean needSkip = false;
 	private Matcher matcher;
@@ -24,10 +31,48 @@ public class PointReader {
 
 	public PointReader(String sourceText, String searchChar) {
 		this(sourceText);
-		this.searchChar = searchChar;
+		saveRegex(searchChar);
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
+		List<Function> ms = new ArrayList<>();
+		Class<RootHandle> classes = RootHandle.class;
+		Object instance = classes.newInstance();
+		Method[] methods = classes.getMethods();
+		for (Method item : methods) {
+			Annotation[] annotation = item.getAnnotations();
+			if (annotation.length >= 1) {
+				for (Annotation annotationItem : annotation) {
+					if (annotationItem.annotationType().equals(Handle.class)) {
+						ms.add(new Function(item, ((Handle) annotationItem).value(), instance));
+					}
+				}
+			}
+		}
+		StatusManager status = new StatusManager();
+		PointReader pReader = new PointReader(FileReader.reader("src//pers//th//i18n.txt"), "\\S+");
+		while (pReader.pushRegex()) {
+			String item = status.tempSave(pReader.item());
+			for (Function fun : ms) {
+				if (fun.equalsName(status.code())) {
+					status.change(fun.exec(item).toString());
+					break;
+				}
+			}
+			int codeInedx = status.code().indexOf("|");
+			if (codeInedx == -1) {
+				status.save();
+				continue;
+			}
+			String nextCode = status.code().substring(codeInedx + 1);
+			status.change(status.code().substring(0, codeInedx));
+			status.save();
+			status.change(nextCode);
+		}
+		status.printfHistroy();
+	}
+
+	public static void main2(String[] args) {
 		String state = "begin";
 		PointReader pReader = new PointReader(FileReader.reader("src//pers//th//i18n.txt"));
 		pReader.saveRegex("\\S+");
@@ -56,15 +101,24 @@ public class PointReader {
 					state = "begin";
 				}
 			}
-			
-			
+
 			// System.out.println(pReader.location() + ">>" + pReader.line() +
 			// ">>" + pReader.column() + ":" + pReader.item());
 
 		}
 		System.out.println(vars);
 	}
-
+	
+	public TextPoint getTextPoint() {
+		TextPoint textPoint = new TextPoint(item);
+		textPoint.setAfter(after());
+		textPoint.setBefore(before());
+		textPoint.setColumn(column());
+		textPoint.setLine(line());
+		textPoint.setIndex(point);
+		return textPoint;
+	}
+	
 	public int line() {
 		return before().split(System.lineSeparator()).length;
 	}
