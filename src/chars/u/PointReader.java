@@ -7,13 +7,14 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.th.js.CharPoint;
 
 import pers.th.util.FileReader;
 
 public class PointReader {
-	
-//	private TextPoint textPoint;
-	
+
+	// private TextPoint textPoint;
+
 	private Integer point;
 	private String item;
 	private String searchChar;
@@ -108,7 +109,8 @@ public class PointReader {
 		}
 		System.out.println(vars);
 	}
-	
+
+
 	public TextPoint getTextPoint() {
 		TextPoint textPoint = new TextPoint(item);
 		textPoint.setAfter(after());
@@ -118,7 +120,7 @@ public class PointReader {
 		textPoint.setIndex(point);
 		return textPoint;
 	}
-	
+
 	public int line() {
 		return before().split(System.lineSeparator()).length;
 	}

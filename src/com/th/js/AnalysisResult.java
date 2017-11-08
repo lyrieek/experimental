@@ -2,7 +2,7 @@ package com.th.js;
 
 public class AnalysisResult {
 	
-	private Status status;
+	private StatusBlack status;
 	
 	private Type type;
 	
@@ -11,7 +11,7 @@ public class AnalysisResult {
 	private long baseIndex;
 	
 	public AnalysisResult() {
-		status = Status.READ;
+		status = new StatusBlack();
 		type = Type.ADD;
 		content = new Content();
 	}
@@ -19,6 +19,7 @@ public class AnalysisResult {
 	public void full(String text) {
 		ContextBlack cb = new ContextBlack(baseIndex);
 		cb.full(text);
+		cb.setStatus(status.status());
 		content = new Content(cb);
 	}
 	
@@ -26,12 +27,20 @@ public class AnalysisResult {
 		this.content = context;
 	}
 	
-	public Status status() {
+	public StatusBlack status() {
 		return status;
 	}
 	
-	public void change(Status status) {
+	public boolean is(Status status) {
+		return this.status.status().equals(status);
+	}
+	
+	public void change(StatusBlack status) {
 		this.status = status;
+	}
+	
+	public void change(Status status) {
+		this.status = new StatusBlack(status);
 	}
 
 	public Type type() {

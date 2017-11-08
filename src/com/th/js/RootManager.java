@@ -2,11 +2,11 @@ package com.th.js;
 
 public class RootManager {
 	
-	private Status currentStatus;
+	private StatusBlack currentStatus;
 	private JSDocument document;
 	
 	public RootManager() {
-		currentStatus = Status.READ;
+		currentStatus = new StatusBlack();
 		document = new JSDocument();
 	}
 
@@ -25,7 +25,7 @@ public class RootManager {
 		return document;
 	}
 	
-	public Status getCurrentStatus() {
+	public StatusBlack getCurrentStatus() {
 		return currentStatus;
 	}
 	

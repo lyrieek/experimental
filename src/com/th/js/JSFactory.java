@@ -4,8 +4,6 @@ import java.io.File;
 
 import org.apache.commons.io.FileUtils;
 
-import chars.u.PointReader;
-
 public class JSFactory {
 	
 	private String context;
@@ -13,7 +11,7 @@ public class JSFactory {
 
 	public static void main(String[] args) throws Exception {
 		JSFactory js = new JSFactory();
-		js.load(FileUtils.readFileToString(new File("g:/cms/CmsWebApp/client/app/repCat/repCat.controller.js")));
+		js.load(FileUtils.readFileToString(new File("g:/cms/CmsWebApp/client/app/tag/tag.controller.js")));
 		js.scanner();
 	}
 
@@ -23,11 +21,11 @@ public class JSFactory {
 
 	public void scanner() {
 		//empty,field,number,char,other
-		PointReader reader = new PointReader(context,"(\\s+|([a-zA-Z_]+([0-9]+)?)|[0-9]+|((\\\\)?('|\"|`))|\\S)");
+		JSScanner reader = new JSScanner(context,"(\\s+|([a-zA-Z_]+([0-9]+)?)|[0-9]+|((\\\\)?('|\"|`))|\\S)");
 		RootManager doc = new RootManager();
 		JsDrive drive = new JsDrive();
 		while (reader.pushRegex()) {
-			drive.instance(reader.getTextPoint());
+			drive.instance(reader.getCharPoint(),doc.getCurrentStatus());
 			doc.change(drive.translation(reader.item()));
 		}
 		doc.getDocument().printf();

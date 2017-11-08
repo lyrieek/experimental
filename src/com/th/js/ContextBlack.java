@@ -130,9 +130,6 @@ public class ContextBlack {
 	}
 	
 	public Status getStatus() {
-		if (isEmpty()) {
-			return Status.EMPTY;
-		}
 		return status;
 	}
 	

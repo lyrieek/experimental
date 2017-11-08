@@ -7,13 +7,12 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 import pers.th.util.FileReader;
 
 public class JSScanner {
-	
-//	private TextPoint textPoint;
-	
+
+	// private TextPoint textPoint;
+
 	private Integer point;
 	private String item;
 	private String searchChar;
@@ -34,7 +33,7 @@ public class JSScanner {
 		saveRegex(searchChar);
 	}
 
-	public CharPoint getPoint() {
+	public CharPoint getCharPoint() {
 		CharPoint textPoint = new CharPoint(item);
 		textPoint.setAfter(after());
 		textPoint.setBefore(before());
@@ -43,7 +42,7 @@ public class JSScanner {
 		textPoint.setIndex(point);
 		return textPoint;
 	}
-	
+
 	public int line() {
 		return before().split(System.lineSeparator()).length;
 	}
