@@ -16,6 +16,10 @@ public class AnalysisResult {
 		content = new Content();
 	}
 
+	/**
+	 * 初始化Content并添加一个基本ContextBlack
+	 * @param text
+	 */
 	public void full(String text) {
 		ContextBlack cb = new ContextBlack(baseIndex);
 		cb.full(text);

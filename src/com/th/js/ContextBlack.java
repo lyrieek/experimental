@@ -1,7 +1,5 @@
 package com.th.js;
 
-import chars.u.TextPoint;
-
 /**
  * 文本块，用来纪录每一块文本
  * 

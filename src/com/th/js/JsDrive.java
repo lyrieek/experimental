@@ -1,20 +1,18 @@
 package com.th.js;
 
-import java.util.LinkedList;
-
 public class JsDrive {
 
-	private AnalysisResult result;
-	private LinkedList<Variables> storage;
+	protected AnalysisResult result;
+	protected Variables storage;
 
-	public JsDrive() {
-		storage = new LinkedList<>();
+	public JsDrive(Variables vals) {
+		storage = vals;
 	}
-	
+
 	public void clear() {
 		storage.clear();
 	}
-	
+
 	/**
 	 * Ω‚ ÕJS
 	 * 
@@ -27,33 +25,10 @@ public class JsDrive {
 			return null;
 		}
 		result.full(item);
-		if (result.is(Status.READ)) {
-			read(item);
-		}else if (result.is(Status.STRING)) {
-			string(item);
-		}
-		
 		return result;
 	}
 
-	public void read(String item) {
-		if (item.trim().isEmpty()) {
-			result.change(Status.EMPTY);
-		}
-		if (item.matches("('|\"|`)")) {
-			StatusBlack sBlack = result.status();
-			sBlack.change(Status.STRING);
-			sBlack.setLabel(item);
-		}
-	}
-
-	private void string(String item) {
-		if (item.equals(result.status().getLabel())) {
-			result.change(Status.READ);
-		}
-	}
-
-	public void instance(CharPoint textPoint,StatusBlack sBlack) {
+	public void instance(CharPoint textPoint, StatusBlack sBlack) {
 		result = new AnalysisResult();
 		result.setBaseIndex(textPoint.getIndex());
 		result.change(sBlack.status());

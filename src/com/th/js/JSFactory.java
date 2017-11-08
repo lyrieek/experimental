@@ -21,9 +21,10 @@ public class JSFactory {
 
 	public void scanner() {
 		//empty,field,number,char,other
+		Variables var = new Variables();
 		JSScanner reader = new JSScanner(context,"(\\s+|([a-zA-Z_]+([0-9]+)?)|[0-9]+|((\\\\)?('|\"|`))|\\S)");
 		RootManager doc = new RootManager();
-		JsDrive drive = new JsDrive();
+		JsDrive drive = new JsDrive(var);
 		while (reader.pushRegex()) {
 			drive.instance(reader.getCharPoint(),doc.getCurrentStatus());
 			doc.change(drive.translation(reader.item()));

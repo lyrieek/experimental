@@ -1,114 +1,92 @@
 package com.th.js;
 
-import java.math.BigDecimal;
-import java.util.HashMap;
+import java.util.LinkedList;
 
-public class Variables extends HashMap<String, DataValue> {
-	private static final long serialVersionUID = -2335975233695300987L;
+public class Variables extends LinkedList<DataValue> {
 
-	private String currentKey;
-	private DataValue currentValue;
-	private String type;
+	private static final long serialVersionUID = 1L;
 
-	public Variables() {
+	public void put(String key, Object item) {
+		add(new DataValue(key, item));
 	}
 
-	public Object add(String key) {
-		return add(key, null);
+	public Object get(String key) {
+		for (DataValue value : this) {
+			if (value.is(key)) {
+				return value.value();
+			}
+		}
+		return null;
 	}
 
-	public Object add(String key, DataValue value) {
-		return super.put(currentKey = key, currentValue = value);
-	}
-
-	public void update(DataValue value) {
-		super.put(currentKey, currentValue = value);
-	}
-
-	public void update(Object value) {
-		update(currentValue = new DataValue(value));
-	}
-
-	public String getCurrentKey() {
-		return currentKey;
-	}
-
-	public Object getCurrentValue() {
-		return currentValue;
-	}
-	
-	public String type() {
-		return type;
-	}
-	
-	public void setType(String type) {
-		this.type = type;
-	}
-	
 }
 
 class DataValue {
 
-	private String dataType;
-	private Object obj;
+	private String key;
+	private Object value;
+
+	// D:default S:system
+	private String type;
+
+	// remark
+	private String label;
 
 	public DataValue() {
+		type = "D";
 	}
 
-	public DataValue(Object obj, String dataType) {
-		super();
-		set(obj, dataType);
+	public DataValue(DataValue currentValue) {
+		this();
+		this.value = currentValue;
 	}
 
-	private DataValue set(Object obj, String dataType) {
-		this.obj = obj;
-		this.dataType = dataType;
-		return this;
+	public DataValue(String label, Object obj) {
+		this();
+		put(label, obj);
 	}
 
-	public DataValue(Object obj) {
-		this(obj, "object");
+	public void put(String key, Object obj) {
+		type = "S";
+		setKey(key);
+		value = obj;
 	}
 
-	public String toType() {
-		return dataType;
+	public String key() {
+		return key;
 	}
 
-	public void setDataType(String dataType) {
-		this.dataType = dataType;
+	public Object value() {
+		return value;
 	}
 
-	public Object getObj() {
-		return obj;
+	public String type() {
+		return type;
+	}
+	
+	public void setKey(String key) {
+		this.key = key;
 	}
 
-	public void setObj(Object obj) {
-		this.obj = obj;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public static DataValue reverse(String data) {
-		DataValue dv = new DataValue();
-		String warp[] = { "\"", "'", "`" };
-		for (String warpItem : warp) {
-			if (data.startsWith(warpItem) && data.endsWith(warpItem)) {
-				return dv.set(data.substring(1, data.length() - 1), "string");
-			}
-		}
-		
-		if (data.matches("[0-9]+")) {
-			return dv.set(new BigDecimal(data), "number");
-		}
-		
-		if (data.matches("(true|false)")) {
-			return dv.set(data.equals("true"), "boolean");
-		}
-		
-		return dv;
+	public boolean is(String key) {
+		return this.key.equals(key);
+	}
+	
+	public boolean of(String param) {
+		return type.equals(param);
 	}
 
-	@Override
-	public String toString() {
-		return obj == null ? null : obj.toString();
+	public String label() {
+		return label;
 	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	
 
 }
