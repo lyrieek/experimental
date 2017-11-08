@@ -5,19 +5,23 @@ import java.util.List;
 
 public class JSDocument {
 
-	//文本总长度
+	// 文本总长度
 	private long length;
-	
-	//扫描到的长度
+
+	// 扫描到的长度
 	private long index;
-	
-	//已读代码
+
+	// 已读代码
 	private LinkedList<ContextBlack> codes;
-	
-	//未关闭的代码
+
+	// 未关闭的代码
 	private List<ContextBlack> notClose;
-	
-	
+
+	public void append(Content context) {
+		if (context.isEmpty()) {
+			codes.add(ContextBlack.getEmpty(index, index += context.getMovePoint()));
+		}
+	}
 
 	public long getLength() {
 		return length;
@@ -50,7 +54,5 @@ public class JSDocument {
 	public void setNotClose(List<ContextBlack> notClose) {
 		this.notClose = notClose;
 	}
-	
-	
-	
+
 }

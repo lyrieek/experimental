@@ -10,9 +10,9 @@ public class ContextBlack {
 
 	private String id;
 
-	private int startIndex;
+	private long startIndex;
 
-	private int endInedx;
+	private long endInedx;
 
 	private int level;
 
@@ -24,12 +24,13 @@ public class ContextBlack {
 
 	private String remark;
 
-	public ContextBlack(int index) {
+	public ContextBlack(long index) {
 		startIndex = index;
 		isClosed = false;
-		id = Integer.toHexString((int) (Math.random() * 0xFFFFFFF)) + Integer.toHexString((int) (Math.random() * 0xFFFFFFF))+this.hashCode();
+		id = Integer.toHexString((int) (Math.random() * 0xFFFFFFF))
+				+ Integer.toHexString((int) (Math.random() * 0xFFFFFFF)) + this.hashCode();
 	}
-	
+
 	public static void main(String[] args) {
 		System.out.println(new ContextBlack(12).id);
 	}
@@ -50,12 +51,22 @@ public class ContextBlack {
 		item.append(chars);
 	}
 
+	public static ContextBlack getEmpty(long start, long length) {
+		ContextBlack cb = new ContextBlack(start);
+		cb.endInedx = length;
+		return cb;
+	}
+
 	public int length() {
 		return item().length();
 	}
 
 	public void close() {
 		this.isClosed = true;
+	}
+
+	public boolean isEmpty() {
+		return item().trim().isEmpty();
 	}
 
 	public String item() {
@@ -70,7 +81,7 @@ public class ContextBlack {
 		return isClosed;
 	}
 
-	public int getStartIndex() {
+	public long getStartIndex() {
 		return startIndex;
 	}
 
@@ -86,7 +97,7 @@ public class ContextBlack {
 		return base;
 	}
 
-	public int getEndInedx() {
+	public long getEndInedx() {
 		return endInedx;
 	}
 

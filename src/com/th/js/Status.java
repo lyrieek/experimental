@@ -6,7 +6,8 @@ public enum Status {
 	STRING,
 	NUMBER,
 	KEYWORDS,
-	REGEX
+	REGEX,
+	EMPTY
 	
 	
 }
