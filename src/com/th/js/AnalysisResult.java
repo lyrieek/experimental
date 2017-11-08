@@ -4,18 +4,25 @@ public class AnalysisResult {
 	
 	private StatusBlack status;
 	
+	private Status nextStatus;
+	
 	private Type type;
 	
 	private Content content;
 	
 	private long baseIndex;
 	
+	
 	public AnalysisResult() {
-		status = new StatusBlack();
 		type = Type.ADD;
+		status = new StatusBlack();
 		content = new Content();
 	}
-
+	
+	public void full(Content context) {
+		this.content = context;
+	}
+	
 	/**
 	 * 初始化Content并添加一个基本ContextBlack
 	 * @param text
@@ -24,11 +31,11 @@ public class AnalysisResult {
 		ContextBlack cb = new ContextBlack(baseIndex);
 		cb.full(text);
 		cb.setStatus(status.status());
-		content = new Content(cb);
+		full(new Content(cb));
 	}
 	
-	public void full(Content context) {
-		this.content = context;
+	public void supplement(ContextBlack cb) {
+		content.add(cb);
 	}
 	
 	public StatusBlack status() {
@@ -41,10 +48,22 @@ public class AnalysisResult {
 	
 	public void change(StatusBlack status) {
 		this.status = status;
+		nextStatus = status.status();
+		if (content.getLastContext() != null) {
+			content.getLastContext().setStatus(status.status());
+		}
 	}
 	
 	public void change(Status status) {
-		this.status = new StatusBlack(status);
+		change(new StatusBlack(nextStatus = status));
+	}
+	
+	public void lazyChange(Status status) {
+		nextStatus = status;
+	}
+	
+	public Status getNextStatus() {
+		return nextStatus;
 	}
 
 	public Type type() {
@@ -54,11 +73,7 @@ public class AnalysisResult {
 	public Type type(Type type) {
 		return this.type = type;
 	}
-	
-	public void supplement(ContextBlack cb) {
-		content.add(cb);
-	}
-	
+
 	public Content context() {
 		return content;
 	}

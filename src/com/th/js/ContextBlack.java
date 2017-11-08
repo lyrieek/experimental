@@ -135,5 +135,9 @@ public class ContextBlack {
 	public String toString() {
 		return startPoint + ":" + item;
 	}
-
+	
+	public String id() {
+		return id;
+	}
+	
 }

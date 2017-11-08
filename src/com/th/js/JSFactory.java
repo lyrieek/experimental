@@ -24,10 +24,10 @@ public class JSFactory {
 		Variables var = new Variables();
 		JSScanner reader = new JSScanner(context,"(\\s+|([a-zA-Z_]+([0-9]+)?)|[0-9]+|((\\\\)?('|\"|`))|\\S)");
 		RootManager doc = new RootManager();
-		JsDrive drive = new JsDrive(var);
+		JSHandle handle = new JSHandle(var);
 		while (reader.pushRegex()) {
-			drive.instance(reader.getCharPoint(),doc.getCurrentStatus());
-			doc.change(drive.translation(reader.item()));
+			handle.instance(reader.getCharPoint(),doc.getCurrentStatus());
+			doc.receive(handle.translation(reader.item()));
 		}
 		doc.getDocument().printf();
 	}

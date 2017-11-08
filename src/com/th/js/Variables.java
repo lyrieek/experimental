@@ -19,6 +19,16 @@ public class Variables extends LinkedList<DataValue> {
 		return null;
 	}
 
+	public void update(String key, String item) {
+		for (DataValue value : this) {
+			if (value.is(key)) {
+				value.update(item);
+				return;
+			}
+		}
+		add(new DataValue(key, item));
+	}
+
 }
 
 class DataValue {
@@ -34,6 +44,10 @@ class DataValue {
 
 	public DataValue() {
 		type = "D";
+	}
+
+	public void update(Object item) {
+		value = item;
 	}
 
 	public DataValue(DataValue currentValue) {

@@ -12,13 +12,14 @@ public class RootManager {
 
 	/**
 	 * ĞŞ¶©ÕûÌåÎÄµµ
-	 * @param translation
+	 * @param result
 	 */
-	public void change(AnalysisResult translation) {
-		currentStatus = translation.status();
-		if (translation.type() == Type.ADD) {
-			document.append(translation.context());
+	public void receive(AnalysisResult result) {
+		currentStatus = result.status();
+		if (result.type() == Type.ADD) {
+			document.append(result.context());
 		}
+		currentStatus = new StatusBlack(result.getNextStatus());
 	}
 	
 	public JSDocument getDocument() {

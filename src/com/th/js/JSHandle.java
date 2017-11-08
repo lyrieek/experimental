@@ -20,16 +20,17 @@ public class JSHandle extends JsDrive{
 	public void read(String item) {
 		if (item.trim().isEmpty()) {
 			result.change(Status.EMPTY);
+			result.lazyChange(Status.READ);
 		}
 		if (item.matches("('|\"|`)")) {
 			result.change(Status.STRING);
-			storage.put("last.string.identifier", item);
+			storage.update("last.string.identifier", item);
 		}
 	}
 
 	public void string(String item) {
 		if (item.equals(storage.get("last.string.identifier"))) {
-			result.change(Status.READ);
+			result.lazyChange(Status.READ);
 		}
 	}
 

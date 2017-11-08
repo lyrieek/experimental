@@ -5,9 +5,11 @@ import java.util.List;
 
 public class Content {
 
-	List<ContextBlack> black;
+	private List<ContextBlack> black;
+	
+	private ContextBlack lastContext;
 
-	long movePoint = 0;
+	private long movePoint = 0;
 
 	public Content() {
 		black = new ArrayList<>();
@@ -20,7 +22,11 @@ public class Content {
 
 	public void add(ContextBlack cb) {
 		movePoint += cb.length();
-		black.add(cb);
+		black.add(lastContext = cb);
+	}
+	
+	public ContextBlack getLastContext() {
+		return lastContext;
 	}
 
 	public boolean isEmpty() {
