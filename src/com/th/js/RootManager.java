@@ -21,6 +21,10 @@ public class RootManager {
 		}
 	}
 	
+	public JSDocument getDocument() {
+		return document;
+	}
+	
 	public Status getCurrentStatus() {
 		return currentStatus;
 	}

@@ -17,11 +17,11 @@ public class JsDrive {
 			System.err.println("JsDrive.translation():AnalysisResult need instance,item:" + item);
 			return null;
 		}
+		result.full(item);
 		if (item.trim().isEmpty()) {
 			result.change(Status.EMPTY);
 			result.full(item);
-			System.out.println(result);
-			System.exit(0);
+			// System.out.println(result);
 		}
 		return result;
 	}

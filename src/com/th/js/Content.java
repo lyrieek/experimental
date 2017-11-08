@@ -3,13 +3,12 @@ package com.th.js;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Content {
-	
+
 	List<ContextBlack> black;
-	
+
 	long movePoint = 0;
-	
+
 	public Content() {
 		black = new ArrayList<>();
 	}
@@ -18,22 +17,24 @@ public class Content {
 		this();
 		add(cb);
 	}
-	
+
 	public void add(ContextBlack cb) {
 		movePoint += cb.length();
-		if (!cb.isEmpty()) {
-			black.add(cb);
-		}
+		black.add(cb);
 	}
-	
+
 	public boolean isEmpty() {
 		return black.size() == 0;
 	}
-	
+
 	public boolean isSingle() {
 		return black.size() == 1;
 	}
-	
+
+	public ContextBlack getSingleContextBlack() {
+		return isSingle() ? black.get(0) : null;
+	}
+
 	public long getMovePoint() {
 		return movePoint;
 	}
@@ -48,6 +49,5 @@ public class Content {
 		}
 		return "Content [black=" + black + ", movePoint=" + movePoint + "]";
 	}
-	
-	
+
 }

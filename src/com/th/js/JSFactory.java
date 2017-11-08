@@ -22,15 +22,15 @@ public class JSFactory {
 	}
 
 	public void scanner() {
-		//empty,field,number,other
-		PointReader reader = new PointReader(context,"(\\s+|([a-zA-Z]+([0-9]+)?)|[0-9]+|\\S)");
+		//empty,field,number,char,other
+		PointReader reader = new PointReader(context,"(\\s+|([a-zA-Z_]+([0-9]+)?)|[0-9]+|((\\\\)?('|\"|`))|\\S)");
 		RootManager doc = new RootManager();
 		JsDrive drive = new JsDrive();
 		while (reader.pushRegex()) {
 			drive.instance(reader.getTextPoint());
 			doc.change(drive.translation(reader.item()));
 		}
-		System.out.println(doc.getCurrentStatus());
+		doc.getDocument().printf();
 	}
 	
 	public void fill() {

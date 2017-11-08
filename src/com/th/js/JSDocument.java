@@ -1,5 +1,6 @@
 package com.th.js;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,9 +18,18 @@ public class JSDocument {
 	// Î´¹Ø±ÕµÄ´úÂë
 	private List<ContextBlack> notClose;
 
+	public JSDocument() {
+		codes = new LinkedList<ContextBlack>();
+		notClose = new ArrayList<ContextBlack>();
+	}
+
 	public void append(Content context) {
 		if (context.isEmpty()) {
-			codes.add(ContextBlack.getEmpty(index, index += context.getMovePoint()));
+			codes.add(context.getSingleContextBlack());
+			return;
+		}
+		if (context.isSingle()) {
+			codes.add(context.getSingleContextBlack());
 		}
 	}
 
@@ -53,6 +63,18 @@ public class JSDocument {
 
 	public void setNotClose(List<ContextBlack> notClose) {
 		this.notClose = notClose;
+	}
+
+	public void printf() {
+		StringBuffer buffer = new StringBuffer();
+		for (ContextBlack contextBlack : codes) {
+			String item = contextBlack.item();
+			if (!contextBlack.isEmpty()) {
+				System.out.println(contextBlack.getStartIndex().getIndex() + ":" + contextBlack.item());
+			}
+			buffer.append(item);
+		}
+		System.out.println(buffer.toString().split("\n").length);
 	}
 
 }

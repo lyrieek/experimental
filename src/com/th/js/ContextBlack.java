@@ -1,5 +1,7 @@
 package com.th.js;
 
+import chars.u.TextPoint;
+
 /**
  * 文本块，用来纪录每一块文本
  * 
@@ -10,9 +12,9 @@ public class ContextBlack {
 
 	private String id;
 
-	private long startIndex;
+	private CharPoint startPoint;
 
-	private long endInedx;
+	private CharPoint endPoint;
 
 	private int level;
 
@@ -24,8 +26,10 @@ public class ContextBlack {
 
 	private String remark;
 
+	private Status status;
+
 	public ContextBlack(long index) {
-		startIndex = index;
+		startPoint = CharPoint.get(index);
 		isClosed = false;
 		id = Integer.toHexString((int) (Math.random() * 0xFFFFFFF))
 				+ Integer.toHexString((int) (Math.random() * 0xFFFFFFF)) + this.hashCode();
@@ -53,7 +57,7 @@ public class ContextBlack {
 
 	public static ContextBlack getEmpty(long start, long length) {
 		ContextBlack cb = new ContextBlack(start);
-		cb.endInedx = length;
+		cb.endPoint = CharPoint.get(length);
 		return cb;
 	}
 
@@ -81,12 +85,12 @@ public class ContextBlack {
 		return isClosed;
 	}
 
-	public long getStartIndex() {
-		return startIndex;
+	public CharPoint getStartIndex() {
+		return startPoint;
 	}
 
-	public void setStartIndex(int startIndex) {
-		this.startIndex = startIndex;
+	public void setStartIndex(CharPoint startPoint) {
+		this.startPoint = startPoint;
 	}
 
 	public void setBase(ContextBlack base) {
@@ -97,12 +101,12 @@ public class ContextBlack {
 		return base;
 	}
 
-	public long getEndInedx() {
-		return endInedx;
+	public CharPoint getEndInedx() {
+		return endPoint;
 	}
 
-	public void setEndInedx(int endInedx) {
-		this.endInedx = endInedx;
+	public void setEndInedx(CharPoint endPoint) {
+		this.endPoint = endPoint;
 	}
 
 	public int getLevel() {
@@ -121,9 +125,20 @@ public class ContextBlack {
 		this.remark = remark;
 	}
 
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
+	public Status getStatus() {
+		if (isEmpty()) {
+			return Status.EMPTY;
+		}
+		return status;
+	}
+	
 	@Override
 	public String toString() {
-		return startIndex + ":" + item;
+		return startPoint + ":" + item;
 	}
 
 }
