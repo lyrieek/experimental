@@ -13,8 +13,18 @@ public class RootManager {
 		document = new JSDocument();
 	}
 
+	
 	/**
-	 * 修订整体文档
+	 * 发送填充驱动参数
+	 * @param jsBaseDrive
+	 */
+	public void fullDrive(JsBaseDrive jsBaseDrive) {
+		jsBaseDrive.setCharPoint(getCurrentPoint());
+		jsBaseDrive.result.change(getCurrentStatus());
+	}
+	
+	/**
+	 * 接收并修订整体文档
 	 * @param result
 	 */
 	public void receive(AnalysisResult result) {
@@ -27,7 +37,6 @@ public class RootManager {
 		}
 		currentStatus = result.getNextStatus();
 	}
-	
 	
 	
 	public JSDocument getDocument() {

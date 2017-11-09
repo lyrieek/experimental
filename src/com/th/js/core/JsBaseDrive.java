@@ -1,22 +1,24 @@
 package com.th.js.core;
 
-public class JsDrive {
+/**
+ * 驱动处理器 处理器的父类
+ */
+public abstract class JsBaseDrive {
 
 	protected AnalysisResult result;
 	protected Variables storage;
 	protected CharPoint charPoint;
 
-	public JsDrive(Variables vals) {
+	public JsBaseDrive(Variables vals) {
 		storage = vals;
 	}
 
 	public void clear() {
 		storage.clear();
 	}
-	
+
 	/**
 	 * 解释JS
-	 * 
 	 * @param item
 	 * @return
 	 */
@@ -31,9 +33,12 @@ public class JsDrive {
 
 	public void instance(RootManager manager) {
 		result = new AnalysisResult();
-		this.charPoint = manager.getCurrentPoint();
+		manager.fullDrive(this);
+	}
+	
+	public void setCharPoint(CharPoint charPoint) {
+		this.charPoint = charPoint;
 		result.setBaseIndex(charPoint.getIndex());
-		result.change(manager.getCurrentStatus());
 	}
 
 }

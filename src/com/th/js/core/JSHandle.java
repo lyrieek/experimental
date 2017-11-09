@@ -4,7 +4,7 @@ package com.th.js.core;
  * ´¦ÀíÆ÷
  *
  */
-public class JSHandle extends JsDrive {
+public class JSHandle extends JsBaseDrive {
 
 	public final static String MARKS = ".={}:;,()";
 
