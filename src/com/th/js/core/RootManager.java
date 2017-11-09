@@ -39,7 +39,6 @@ public class RootManager {
 		currentStatus = result.getNextStatus();
 	}
 	
-	
 	public JSDocument getDocument() {
 		return document;
 	}

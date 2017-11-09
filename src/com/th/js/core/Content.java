@@ -1,18 +1,19 @@
 package com.th.js.core;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Content {
 
-	private List<ContextBlack> black;
-	
+	private LinkedList<ContextBlack> black;
+
 	private ContextBlack lastContext;
 
 	private long movePoint = 0;
 
 	public Content() {
-		black = new ArrayList<>();
+		black = new LinkedList<>();
 	}
 
 	public Content(ContextBlack cb) {
@@ -24,7 +25,21 @@ public class Content {
 		movePoint += cb.length();
 		black.add(lastContext = cb);
 	}
-	
+
+	public void addAll(List<ContextBlack> allBlack) {
+		black.addAll(allBlack);
+	}
+
+	public void merge() {
+		ContextBlack cBlack = black.getFirst();
+		for (int i = 1; i < black.size(); i++) {
+			cBlack.append(black.get(i).item());
+		}
+		cBlack.setEndInedx(black.getLast().getEndInedx());
+		black.clear();
+		black.add(cBlack);
+	}
+
 	public ContextBlack getLastContext() {
 		return lastContext;
 	}
@@ -36,11 +51,11 @@ public class Content {
 	public boolean isSingle() {
 		return black.size() == 1;
 	}
-	
+
 	public List<ContextBlack> getAllBlack() {
 		return black;
 	}
-	
+
 	public ContextBlack getSingleContextBlack() {
 		return isSingle() ? black.get(0) : null;
 	}

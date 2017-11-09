@@ -45,9 +45,10 @@ public class JSHandle extends JsBaseDrive {
 	public void string(String item) {
 		if (!item.equals(storage.get("last.string.identifier"))) {
 			result.lazyCommit();
+			result.supplement();
 			return;
 		}
-		result.supplement(item);
+		result.merge();
 		result.lazyChange(Status.READ);
 	}
 

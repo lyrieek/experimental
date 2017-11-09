@@ -34,14 +34,15 @@ public class AnalysisResult {
 		this.content = new Content(cb);
 	}
 
-	public void supplement(String text) {
-		if (content.isEmpty()) {
-			content = lastContent;
-		}
-		ContextBlack cb = new ContextBlack(baseIndex);
-		cb.full(text);
-		cb.setStatus(status);
-		content.add(cb);
+	public void merge() {
+		supplement();
+		content.merge();
+		allow = true;
+	}
+
+	public void supplement() {
+		lastContent.addAll(content.getAllBlack());
+		content = lastContent;
 	}
 	
 	public Status status() {

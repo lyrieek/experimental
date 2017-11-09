@@ -37,9 +37,9 @@ public class JSDocument {
 	public void printf() {
 		StringBuffer buffer = new StringBuffer();
 		for (ContextBlack contextBlack : codes) {
-			if (contextBlack.getStatus() != Status.STRING) {
-				continue;
-			}
+//			if (contextBlack.getStatus() != Status.STRING) {
+//				continue;
+//			}
 			String item = contextBlack.item();
 			System.out.print(contextBlack.getStartIndex().getIndex() + ">>");
 			if (contextBlack.getStatus() != null) {
