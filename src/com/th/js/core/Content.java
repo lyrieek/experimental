@@ -1,4 +1,4 @@
-package com.th.js;
+package com.th.js.core;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,11 @@ public class Content {
 	public boolean isSingle() {
 		return black.size() == 1;
 	}
-
+	
+	public List<ContextBlack> getAllBlack() {
+		return black;
+	}
+	
 	public ContextBlack getSingleContextBlack() {
 		return isSingle() ? black.get(0) : null;
 	}

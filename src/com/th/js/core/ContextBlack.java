@@ -1,4 +1,4 @@
-package com.th.js;
+package com.th.js.core;
 
 /**
  * 文本块，用来纪录每一块文本

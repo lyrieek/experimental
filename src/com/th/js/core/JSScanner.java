@@ -1,4 +1,4 @@
-package com.th.js;
+package com.th.js.core;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

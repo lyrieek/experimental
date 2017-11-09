@@ -1,9 +1,10 @@
-package com.th.js;
+package com.th.js.core;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+//整体文档
 public class JSDocument {
 
 	// 文本总长度
@@ -24,12 +25,12 @@ public class JSDocument {
 	}
 
 	public void append(Content context) {
-		if (context.isEmpty()) {
+		if (context.isEmpty() || context.isSingle()) {
 			codes.add(context.getSingleContextBlack());
 			return;
 		}
-		if (context.isSingle()) {
-			codes.add(context.getSingleContextBlack());
+		for (ContextBlack contextBlack : context.getAllBlack()) {
+			codes.add(contextBlack);
 		}
 	}
 

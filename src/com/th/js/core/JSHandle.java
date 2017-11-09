@@ -1,13 +1,17 @@
-package com.th.js;
+package com.th.js.core;
 
-public class JSHandle extends JsDrive{
-	
+/**
+ * ´¦ÀíÆ÷
+ *
+ */
+public class JSHandle extends JsDrive {
+
 	public final static String MARKS = ".={}:;,()";
 
 	public JSHandle(Variables vals) {
 		super(vals);
 	}
-	
+
 	@Override
 	public AnalysisResult translation(String item) {
 		super.translation(item);
@@ -22,16 +26,20 @@ public class JSHandle extends JsDrive{
 	public void read(String item) {
 		if (item.trim().isEmpty()) {
 			result.temporary(Status.EMPTY);
-		}else if (item.length() == 1 && MARKS.contains(item)) {
+		} else if (item.length() == 1 && MARKS.contains(item)) {
 			result.temporary(Status.MARK);
-		}else if (item.matches("('|\"|`)")) {
+		} else if (item.matches("('|\"|`)")) {
 			result.change(Status.STRING);
+			result.lazyCommit();
 			storage.update("last.string.identifier", item);
-		}else if (item.startsWith("//") || item.startsWith("/*")) {
+		} else if (item.startsWith("//") || item.startsWith("/*")) {
 			result.temporary(Status.REMARK);
-		}else if (item.matches("((\\-)?\\d{1,}(\\.{1}\\d+)?)")) {
+		} else if (item.matches("((\\-)?\\d{1,}(\\.{1}\\d+)?)")) {
 			result.temporary(Status.NUMBER);
+		}else if (KeyWords.contains(item)) {
+			result.temporary(Status.KEYWORDS);
 		}
+
 	}
 
 	public void string(String item) {

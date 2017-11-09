@@ -1,4 +1,4 @@
-package com.th.js;
+package com.th.js.core;
 
 public class CharPoint {
 

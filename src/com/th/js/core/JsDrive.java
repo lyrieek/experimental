@@ -1,9 +1,10 @@
-package com.th.js;
+package com.th.js.core;
 
 public class JsDrive {
 
 	protected AnalysisResult result;
 	protected Variables storage;
+	protected CharPoint charPoint;
 
 	public JsDrive(Variables vals) {
 		storage = vals;
@@ -28,10 +29,11 @@ public class JsDrive {
 		return result;
 	}
 
-	public void instance(CharPoint textPoint, Status status) {
+	public void instance(RootManager manager) {
 		result = new AnalysisResult();
-		result.setBaseIndex(textPoint.getIndex());
-		result.change(status);
+		this.charPoint = manager.getCurrentPoint();
+		result.setBaseIndex(charPoint.getIndex());
+		result.change(manager.getCurrentStatus());
 	}
 
 }

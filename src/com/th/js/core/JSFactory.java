@@ -1,4 +1,4 @@
-package com.th.js;
+package com.th.js.core;
 
 import java.io.File;
 
@@ -28,13 +28,14 @@ public class JSFactory {
 		// empty,field,number,char,other
 		Variables var = new Variables();
 		JSScanner reader = new JSScanner(context, regex);
-		RootManager doc = new RootManager();
+		RootManager manager = new RootManager();
 		JSHandle handle = new JSHandle(var);
 		while (reader.pushRegex()) {
-			handle.instance(reader.getCharPoint(), doc.getCurrentStatus());
-			doc.receive(handle.translation(reader.item()));
+			manager.setCurrentPoint(reader.getCharPoint());
+			handle.instance(manager);
+			manager.receive(handle.translation(reader.item()));
 		}
-		doc.getDocument().printf();
+		manager.getDocument().printf();
 	}
 
 	public void fill() {

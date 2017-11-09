@@ -1,9 +1,12 @@
-package com.th.js;
+package com.th.js.core;
 
+//主流程管理
 public class RootManager {
 	
 	private Status currentStatus;
 	private JSDocument document;
+	private CharPoint currentPoint;
+	private Content currentContent;
 	
 	public RootManager() {
 		currentStatus = Status.READ;
@@ -16,11 +19,16 @@ public class RootManager {
 	 */
 	public void receive(AnalysisResult result) {
 		currentStatus = result.status();
+		currentContent = result.context();
 		if (result.type() == Type.ADD) {
-			document.append(result.context());
+			if (result.isAllow()) {
+				document.append(currentContent);
+			}
 		}
 		currentStatus = result.getNextStatus();
 	}
+	
+	
 	
 	public JSDocument getDocument() {
 		return document;
@@ -28,6 +36,14 @@ public class RootManager {
 	
 	public Status getCurrentStatus() {
 		return currentStatus;
+	}
+
+	public void setCurrentPoint(CharPoint charPoint) {
+		this.currentPoint = charPoint;
+	}
+	
+	public CharPoint getCurrentPoint() {
+		return currentPoint;
 	}
 	
 }

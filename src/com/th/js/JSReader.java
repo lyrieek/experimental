@@ -3,6 +3,8 @@ package com.th.js;
 import java.io.File;
 import org.apache.commons.io.FileUtils;
 
+import com.th.js.core.JSFactory;
+
 public class JSReader {
 	
 

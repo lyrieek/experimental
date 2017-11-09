@@ -1,4 +1,4 @@
-package com.th.js;
+package com.th.js.core;
 
 public class AnalysisResult {
 	
@@ -11,6 +11,8 @@ public class AnalysisResult {
 	private Content content;
 	
 	private long baseIndex;
+	
+	private boolean allow = true;
 	
 	
 	public AnalysisResult() {
@@ -94,6 +96,13 @@ public class AnalysisResult {
 	}
 
 	
+	public void lazyCommit() {
+		allow = false;
+	}
+	
+	public boolean isAllow() {
+		return allow;
+	}
 	
 	
 }
