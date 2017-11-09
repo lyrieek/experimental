@@ -14,17 +14,27 @@ public class JSScanner {
 	private int count = 0;
 	private boolean needSkip = false;
 	private Matcher matcher;
+	private String lineSeparator = System.lineSeparator();
 
 	// constructor
 
 	public JSScanner(String sourceText) {
 		point = 0;
 		this.source = sourceText;
+		lineSeparator = "\n";
 	}
 
 	public JSScanner(String sourceText, String searchChar) {
 		this(sourceText);
 		saveRegex(searchChar);
+	}
+	
+	public static void main(String[] args) {
+		JSScanner reader = new JSScanner("ass sd \r\n wefw sa", "\\S+");
+		while (reader.pushRegex()) {
+			System.out.print(reader.getCharPoint());
+			System.out.println(reader.item);
+		}
 	}
 
 	public CharPoint getCharPoint() {
@@ -38,12 +48,12 @@ public class JSScanner {
 	}
 
 	public int line() {
-		return before().split(System.lineSeparator()).length;
+		return before().split(lineSeparator).length;
 	}
 
 	public int column() {
-		int lastLine = before().lastIndexOf(System.lineSeparator());
-		lastLine = (lastLine == -1) ? 0 : lastLine + 2;
+		int lastLine = before().lastIndexOf(lineSeparator);
+		lastLine = (lastLine == -1) ? 0 : lastLine + 1;
 		return point - lastLine;
 	}
 
@@ -106,7 +116,7 @@ public class JSScanner {
 	// process
 
 	/**
-	 * ÌøÔ¾²éÕÒµ½µÄÏî,×¼±¸ÏÂÒ»´Î²éÕÒ
+	 * ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½,×¼ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î²ï¿½ï¿½ï¿½
 	 */
 	public void skip() {
 		if (needSkip && item != null) {
@@ -116,12 +126,12 @@ public class JSScanner {
 	}
 
 	/**
-	 * ÍÆ½øÎÄ±¾
+	 * ï¿½Æ½ï¿½ï¿½Ä±ï¿½
 	 * 
 	 * @param location
-	 *            ÍÆ½øµ½µÄÎ»ÖÃ
+	 *            ï¿½Æ½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
 	 * @param search
-	 *            ÍÆ½øµÄÎÄ±¾
+	 *            ï¿½Æ½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½
 	 */
 	public void push(int location, String search) {
 		move(location);
@@ -131,7 +141,7 @@ public class JSScanner {
 	}
 
 	/**
-	 * ÒÆ¶¯ËÑË÷Î»ÖÃ
+	 * ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
 	 * 
 	 * @param point
 	 */
@@ -148,7 +158,7 @@ public class JSScanner {
 	}
 
 	/**
-	 * Ö®Ç°µÄÎÄ±¾
+	 * Ö®Ç°ï¿½ï¿½ï¿½Ä±ï¿½
 	 * 
 	 * @return
 	 */
@@ -157,7 +167,7 @@ public class JSScanner {
 	}
 
 	/**
-	 * Ö®ºóµÄÎÄ±¾
+	 * Ö®ï¿½ï¿½ï¿½ï¿½Ä±ï¿½
 	 * 
 	 * @return
 	 */

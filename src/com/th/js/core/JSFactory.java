@@ -32,11 +32,10 @@ public class JSFactory {
 		JSHandle handle = new JSHandle(var);
 		while (reader.pushRegex()) {
 			manager.setCurrentPoint(reader.getCharPoint());
-			System.out.println(reader.getCharPoint());
 			handle.instance(manager);
 			manager.receive(handle.translation(reader.item()));
 		}
-//		manager.getDocument().printf();
+		manager.getDocument().printf();
 	}
 
 	public String getContext() {
