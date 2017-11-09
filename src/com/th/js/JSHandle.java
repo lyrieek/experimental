@@ -1,6 +1,8 @@
 package com.th.js;
 
 public class JSHandle extends JsDrive{
+	
+	public final static String MARKS = ".={}:;,()";
 
 	public JSHandle(Variables vals) {
 		super(vals);
@@ -19,12 +21,16 @@ public class JSHandle extends JsDrive{
 
 	public void read(String item) {
 		if (item.trim().isEmpty()) {
-			result.change(Status.EMPTY);
-			result.lazyChange(Status.READ);
-		}
-		if (item.matches("('|\"|`)")) {
+			result.temporary(Status.EMPTY);
+		}else if (item.length() == 1 && MARKS.contains(item)) {
+			result.temporary(Status.MARK);
+		}else if (item.matches("('|\"|`)")) {
 			result.change(Status.STRING);
 			storage.update("last.string.identifier", item);
+		}else if (item.startsWith("//") || item.startsWith("/*")) {
+			result.temporary(Status.REMARK);
+		}else if (item.matches("((\\-)?\\d{1,}(\\.{1}\\d+)?)")) {
+			result.temporary(Status.NUMBER);
 		}
 	}
 

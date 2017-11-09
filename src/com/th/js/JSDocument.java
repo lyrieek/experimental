@@ -68,18 +68,19 @@ public class JSDocument {
 	public void printf() {
 		StringBuffer buffer = new StringBuffer();
 		for (ContextBlack contextBlack : codes) {
-			String item = contextBlack.item();
-			System.out.print(contextBlack.getStartIndex().getIndex()+">>");
-			if (contextBlack.getStatus() != null) {
-				System.out.print(contextBlack.getStatus()+":");
+			if (contextBlack.getStatus() != Status.STRING) {
+				continue;
 			}
-			System.out.println(contextBlack.isEmpty() ? "<<" : contextBlack.item()+"<<");
-			// if (!contextBlack.isEmpty()) {}
-
+			String item = contextBlack.item();
+			System.out.print(contextBlack.getStartIndex().getIndex() + ">>");
+			if (contextBlack.getStatus() != null) {
+				System.out.print(contextBlack.getStatus() + ":");
+			}
+			System.out.println(contextBlack.isEmpty() ? "<<" : contextBlack.item() + "<<");
 			buffer.append(item);
 		}
-		System.out.println(buffer.toString().split("\n").length);
-		//250  10108
+		// System.out.println(buffer.toString().split("\n").length);
+		// 250 10108
 	}
 
 }

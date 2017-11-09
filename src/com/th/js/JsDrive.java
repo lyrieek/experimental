@@ -28,10 +28,10 @@ public class JsDrive {
 		return result;
 	}
 
-	public void instance(CharPoint textPoint, StatusBlack sBlack) {
+	public void instance(CharPoint textPoint, Status status) {
 		result = new AnalysisResult();
 		result.setBaseIndex(textPoint.getIndex());
-		result.change(sBlack.status());
+		result.change(status);
 	}
 
 }

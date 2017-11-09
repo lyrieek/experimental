@@ -1,13 +1,7 @@
 package com.th.js;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import pers.th.util.FileReader;
 
 public class JSScanner {
 

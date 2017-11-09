@@ -2,7 +2,7 @@ package com.th.js;
 
 public class AnalysisResult {
 	
-	private StatusBlack status;
+	private Status status;
 	
 	private Status nextStatus;
 	
@@ -15,7 +15,7 @@ public class AnalysisResult {
 	
 	public AnalysisResult() {
 		type = Type.ADD;
-		status = new StatusBlack();
+		status = Status.READ;
 		content = new Content();
 	}
 	
@@ -30,7 +30,7 @@ public class AnalysisResult {
 	public void full(String text) {
 		ContextBlack cb = new ContextBlack(baseIndex);
 		cb.full(text);
-		cb.setStatus(status.status());
+		cb.setStatus(status);
 		full(new Content(cb));
 	}
 	
@@ -38,28 +38,29 @@ public class AnalysisResult {
 		content.add(cb);
 	}
 	
-	public StatusBlack status() {
+	public Status status() {
 		return status;
 	}
 	
 	public boolean is(Status status) {
-		return this.status.status().equals(status);
-	}
-	
-	public void change(StatusBlack status) {
-		this.status = status;
-		nextStatus = status.status();
-		if (content.getLastContext() != null) {
-			content.getLastContext().setStatus(status.status());
-		}
+		return this.status.equals(status);
 	}
 	
 	public void change(Status status) {
-		change(new StatusBlack(nextStatus = status));
+		this.status = nextStatus = status;
+		if (content.getLastContext() != null) {
+			content.getLastContext().setStatus(status);
+		}
 	}
 	
 	public void lazyChange(Status status) {
 		nextStatus = status;
+	}
+	
+	public void temporary(Status status) {
+		Status source = this.status;
+		change(status);
+		lazyChange(source);
 	}
 	
 	public Status getNextStatus() {
@@ -91,6 +92,8 @@ public class AnalysisResult {
 		return "AnalysisResult [status=" + status + ", type=" + type + ", content=" + content + ", baseIndex="
 				+ baseIndex + "]";
 	}
+
+	
 	
 	
 }
