@@ -31,6 +31,10 @@ public abstract class JsBaseDrive {
 		return result;
 	}
 
+	/**
+	 * 实例化返回值
+	 * @param manager
+	 */
 	public void instance(RootManager manager) {
 		result = new AnalysisResult();
 		manager.fullDrive(this);

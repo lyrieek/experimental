@@ -35,7 +35,6 @@ public class AnalysisResult {
 	}
 
 	public void supplement(String text) {
-		System.out.println(1);
 		if (content.isEmpty()) {
 			content = lastContent;
 		}
