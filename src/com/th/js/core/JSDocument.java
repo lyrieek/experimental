@@ -37,11 +37,11 @@ public class JSDocument {
 	public void printf() {
 		StringBuffer buffer = new StringBuffer();
 		for (ContextBlack contextBlack : codes) {
-//			if (contextBlack.getStatus() != Status.STRING) {
-//				continue;
-//			}
+			if (contextBlack.getStatus() != Status.READ) {
+				continue;
+			}
 			String item = contextBlack.item();
-			System.out.print(contextBlack.getStartIndex().getIndex() + ">>");
+			System.out.print(contextBlack.getStartIndex() + ">>");
 			if (contextBlack.getStatus() != null) {
 				System.out.print(contextBlack.getStatus() + ":");
 			}

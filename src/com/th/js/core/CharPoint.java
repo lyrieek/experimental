@@ -74,6 +74,10 @@ public class CharPoint {
 	public void setAfter(String after) {
 		this.after = after;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "{CharPoint [line:" + line + ";column:" + column + ";]}";
+	}
 	
 }

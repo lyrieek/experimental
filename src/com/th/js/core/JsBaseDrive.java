@@ -42,7 +42,7 @@ public abstract class JsBaseDrive {
 	
 	public void setCharPoint(CharPoint charPoint) {
 		this.charPoint = charPoint;
-		result.setBaseIndex(charPoint.getIndex());
+		result.setPoint(charPoint);
 	}
 	
 	public CharPoint getCharPoint() {

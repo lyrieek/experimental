@@ -12,7 +12,7 @@ public class AnalysisResult {
 	
 	private Content content;
 	
-	private long baseIndex;
+	private CharPoint point;
 	
 	private boolean allow = true;
 	
@@ -27,7 +27,7 @@ public class AnalysisResult {
 	 * @param text
 	 */
 	public void full(String text) {
-		ContextBlack cb = new ContextBlack(baseIndex);
+		ContextBlack cb = new ContextBlack(point);
 		cb.full(text);
 		cb.setStatus(status);
 		content.add(cb);
@@ -35,12 +35,11 @@ public class AnalysisResult {
 	}
 
 	public void merge() {
-		supplement();
 		content.merge();
 		allow = true;
 	}
 
-	public void supplement() {
+	public void further() {
 		lastContent.addAll(content.getAllBlack());
 		content = lastContent;
 	}
@@ -86,12 +85,12 @@ public class AnalysisResult {
 		return content;
 	}
 	
-	public void setBaseIndex(long baseIndex) {
-		this.baseIndex = baseIndex;
+	public CharPoint point() {
+		return point;
 	}
 	
-	public long getBaseIndex() {
-		return baseIndex;
+	public void setPoint(CharPoint point) {
+		this.point = point;
 	}
 	
 	public void setLastContent(Content content) {
@@ -100,8 +99,7 @@ public class AnalysisResult {
 
 	@Override
 	public String toString() {
-		return "AnalysisResult [status=" + status + ", type=" + type + ", content=" + content + ", baseIndex="
-				+ baseIndex + "]";
+		return "AnalysisResult [status=" + status + ", type=" + type + ", content=" + content + "]";
 	}
 
 	

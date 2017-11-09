@@ -6,7 +6,7 @@ package com.th.js.core;
  */
 public class JSHandle extends JsBaseDrive {
 
-	public final static String MARKS = ".={}:;,()";
+	public final static String MARKS = ".={}:;,()[]";
 
 	public JSHandle(Variables vals) {
 		super(vals);
@@ -43,9 +43,9 @@ public class JSHandle extends JsBaseDrive {
 	}
 
 	public void string(String item) {
+		result.further();
 		if (!item.equals(storage.get("last.string.identifier"))) {
 			result.lazyCommit();
-			result.supplement();
 			return;
 		}
 		result.merge();

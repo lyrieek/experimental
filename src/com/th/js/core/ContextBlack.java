@@ -23,16 +23,16 @@ public class ContextBlack {
 	private String remark;
 
 	private Status status;
-
-	public ContextBlack(long index) {
-		startPoint = CharPoint.get(index);
+	
+	public ContextBlack(CharPoint start) {
+		startPoint = start;
 		isClosed = false;
 		id = Integer.toHexString((int) (Math.random() * 0xFFFFFFF))
 				+ Integer.toHexString((int) (Math.random() * 0xFFFFFFF)) + this.hashCode();
 	}
 
-	public static void main(String[] args) {
-		System.out.println(new ContextBlack(12).id);
+	public ContextBlack(long index) {
+		this(CharPoint.get(index));
 	}
 
 	public void full(String text) {
