@@ -3,8 +3,6 @@ package chars.u;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import com.sun.org.apache.regexp.internal.recompile;
-
 public class Function {
 
 	private String name;

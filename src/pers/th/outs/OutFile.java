@@ -9,8 +9,6 @@ import java.util.Properties;
 
 import org.apache.commons.io.IOUtils;
 
-import com.sun.java.swing.plaf.motif.resources.motif_fr;
-
 import pers.th.chars.Words;
 import pers.th.chars.WordsFactory;
 

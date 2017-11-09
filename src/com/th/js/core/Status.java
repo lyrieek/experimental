@@ -2,28 +2,28 @@ package com.th.js.core;
 
 public enum Status {
 	
-	//Õý³£ÎÄ±¾
+	//æ­£å¸¸æ–‡æœ¬
 	READ,
 	
-	//×¢ÊÍ
+	//æ³¨é‡Š
 	REMARK,
 	
-	//×Ö·û´®
+	//å­—ç¬¦ä¸²
 	STRING,
 	
-	//Êý×Ö
+	//æ•°å­—
 	NUMBER,
 	
-	//·ûºÅ
+	//ç¬¦å·
 	MARK,
 	
-	//¹Ø¼ü×Ö
+	//å…³é”®å­—
 	KEYWORDS,
 	
-	//ÕýÔò
+	//æ­£åˆ™
 	REGEX,
 	
-	//¿Õ°×
+	//ç©ºç™½
 	EMPTY
 	
 }

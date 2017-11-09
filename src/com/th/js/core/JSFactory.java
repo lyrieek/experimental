@@ -38,10 +38,6 @@ public class JSFactory {
 		manager.getDocument().printf();
 	}
 
-	public void fill() {
-
-	}
-
 	public String getContext() {
 		return context;
 	}

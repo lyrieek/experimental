@@ -8,6 +8,8 @@ public class AnalysisResult {
 	
 	private Type type;
 	
+	private Content lastContent;
+	
 	private Content content;
 	
 	private long baseIndex;
@@ -21,22 +23,25 @@ public class AnalysisResult {
 		content = new Content();
 	}
 	
-	public void full(Content context) {
-		this.content = context;
-	}
-	
 	/**
-	 * 初始化Content并添加一个基本ContextBlack
 	 * @param text
 	 */
 	public void full(String text) {
 		ContextBlack cb = new ContextBlack(baseIndex);
 		cb.full(text);
 		cb.setStatus(status);
-		full(new Content(cb));
+		content.add(cb);
+		this.content = new Content(cb);
 	}
-	
-	public void supplement(ContextBlack cb) {
+
+	public void supplement(String text) {
+		System.out.println(1);
+		if (content.isEmpty()) {
+			content = lastContent;
+		}
+		ContextBlack cb = new ContextBlack(baseIndex);
+		cb.full(text);
+		cb.setStatus(status);
 		content.add(cb);
 	}
 	
@@ -87,6 +92,10 @@ public class AnalysisResult {
 	
 	public long getBaseIndex() {
 		return baseIndex;
+	}
+	
+	public void setLastContent(Content content) {
+		this.lastContent = content;
 	}
 
 	@Override

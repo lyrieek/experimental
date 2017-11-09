@@ -1,6 +1,6 @@
 package com.th.js.core;
 
-//Ö÷Á÷³Ì¹ÜÀí
+//ä¸»æµç¨‹ç®¡ç†
 public class RootManager {
 	
 	private Status currentStatus;
@@ -15,16 +15,17 @@ public class RootManager {
 
 	
 	/**
-	 * ·¢ËÍÌî³äÇı¶¯²ÎÊı
+	 * å‘é€å¡«å……é©±åŠ¨å‚æ•°
 	 * @param jsBaseDrive
 	 */
 	public void fullDrive(JsBaseDrive jsBaseDrive) {
 		jsBaseDrive.setCharPoint(getCurrentPoint());
 		jsBaseDrive.result.change(getCurrentStatus());
+		jsBaseDrive.result.setLastContent(currentContent);
 	}
 	
 	/**
-	 * ½ÓÊÕ²¢ĞŞ¶©ÕûÌåÎÄµµ
+	 * æ¥æ”¶å¹¶ä¿®è®¢æ•´ä½“æ–‡æ¡£
 	 * @param result
 	 */
 	public void receive(AnalysisResult result) {
@@ -33,7 +34,7 @@ public class RootManager {
 		if (result.type() == Type.ADD) {
 			if (result.isAllow()) {
 				document.append(currentContent);
-			}
+			} 
 		}
 		currentStatus = result.getNextStatus();
 	}

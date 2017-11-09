@@ -3,13 +3,8 @@ package pers.th.chars;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.Random;
 
-import org.apache.commons.lang3.StringUtils;
-
-import sun.misc.Unsafe;
 
 public class WordBase {
 	

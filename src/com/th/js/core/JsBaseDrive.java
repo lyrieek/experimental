@@ -1,7 +1,7 @@
 package com.th.js.core;
 
 /**
- * Çı¶¯´¦ÀíÆ÷ ´¦ÀíÆ÷µÄ¸¸Àà
+ * é©±åŠ¨å¤„ç†å™¨ å¤„ç†å™¨çš„çˆ¶ç±»
  */
 public abstract class JsBaseDrive {
 
@@ -18,7 +18,7 @@ public abstract class JsBaseDrive {
 	}
 
 	/**
-	 * ½âÊÍJS
+	 * è§£é‡ŠJS
 	 * @param item
 	 * @return
 	 */
@@ -39,6 +39,10 @@ public abstract class JsBaseDrive {
 	public void setCharPoint(CharPoint charPoint) {
 		this.charPoint = charPoint;
 		result.setBaseIndex(charPoint.getIndex());
+	}
+	
+	public CharPoint getCharPoint() {
+		return charPoint;
 	}
 
 }

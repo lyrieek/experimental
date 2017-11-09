@@ -1,7 +1,7 @@
 package com.th.js.core;
 
 /**
- * ´¦ÀíÆ÷
+ * å¤„ç†å™¨
  *
  */
 public class JSHandle extends JsBaseDrive {
@@ -43,9 +43,12 @@ public class JSHandle extends JsBaseDrive {
 	}
 
 	public void string(String item) {
-		if (item.equals(storage.get("last.string.identifier"))) {
-			result.lazyChange(Status.READ);
+		if (!item.equals(storage.get("last.string.identifier"))) {
+			result.lazyCommit();
+			return;
 		}
+		result.supplement(item);
+		result.lazyChange(Status.READ);
 	}
 
 }

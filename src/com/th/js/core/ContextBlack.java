@@ -1,8 +1,6 @@
 package com.th.js.core;
 
-/**
- * 文本块，用来纪录每一块文本
- * 
+/** 
  * @author user
  *
  */
@@ -133,7 +131,7 @@ public class ContextBlack {
 	
 	@Override
 	public String toString() {
-		return startPoint + ":" + item;
+		return startPoint.getIndex() + ":" + item;
 	}
 	
 	public String id() {

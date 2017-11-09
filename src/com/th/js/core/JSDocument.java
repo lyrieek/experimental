@@ -4,19 +4,23 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-//ÕûÌåÎÄµµ
+/**
+ * æ•´ä½“æ–‡æ¡£
+ *
+ */
 public class JSDocument {
 
-	// ÎÄ±¾×Ü³¤¶È
+	// æ–‡æœ¬æ€»é•¿åº¦
 	private long length;
 
-	// É¨Ãèµ½µÄ³¤¶È
+	// æ‰«æåˆ°çš„é•¿åº¦
 	private long index;
 
-	// ÒÑ¶Á´úÂë
+	// å·²è¯»ä»£ç 
+	
 	private LinkedList<ContextBlack> codes;
 
-	// Î´¹Ø±ÕµÄ´úÂë
+	// æœªå…³é—­çš„ä»£ç 
 	private List<ContextBlack> notClose;
 
 	public JSDocument() {
@@ -25,45 +29,9 @@ public class JSDocument {
 	}
 
 	public void append(Content context) {
-		if (context.isEmpty() || context.isSingle()) {
-			codes.add(context.getSingleContextBlack());
-			return;
-		}
 		for (ContextBlack contextBlack : context.getAllBlack()) {
 			codes.add(contextBlack);
 		}
-	}
-
-	public long getLength() {
-		return length;
-	}
-
-	public void setLength(long length) {
-		this.length = length;
-	}
-
-	public long getIndex() {
-		return index;
-	}
-
-	public void setIndex(long index) {
-		this.index = index;
-	}
-
-	public LinkedList<ContextBlack> getCodes() {
-		return codes;
-	}
-
-	public void setCodes(LinkedList<ContextBlack> codes) {
-		this.codes = codes;
-	}
-
-	public List<ContextBlack> getNotClose() {
-		return notClose;
-	}
-
-	public void setNotClose(List<ContextBlack> notClose) {
-		this.notClose = notClose;
 	}
 
 	public void printf() {
@@ -82,6 +50,31 @@ public class JSDocument {
 		}
 		// System.out.println(buffer.toString().split("\n").length);
 		// 250 10108
+	}
+
+	public long index() {
+		length += index;
+		return index;
+	}
+
+	public long length() {
+		return length;
+	}
+	
+	public LinkedList<ContextBlack> codes() {
+		return codes;
+	}
+
+	public void setCodes(LinkedList<ContextBlack> codes) {
+		this.codes = codes;
+	}
+
+	public List<ContextBlack> getNotClose() {
+		return notClose;
+	}
+
+	public void setNotClose(List<ContextBlack> notClose) {
+		this.notClose = notClose;
 	}
 
 }
