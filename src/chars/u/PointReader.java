@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.th.js.core.CharPoint;
 
 import pers.th.util.FileReader;
 
@@ -190,7 +189,7 @@ public class PointReader {
 	// process
 
 	/**
-	 * ÌøÔ¾²éÕÒµ½µÄÏî,×¼±¸ÏÂÒ»´Î²éÕÒ
+	 * ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½,×¼ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î²ï¿½ï¿½ï¿½
 	 */
 	public void skip() {
 		if (needSkip && item != null) {
@@ -200,12 +199,12 @@ public class PointReader {
 	}
 
 	/**
-	 * ÍÆ½øÎÄ±¾
+	 * ï¿½Æ½ï¿½ï¿½Ä±ï¿½
 	 * 
 	 * @param location
-	 *            ÍÆ½øµ½µÄÎ»ÖÃ
+	 *            ï¿½Æ½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
 	 * @param search
-	 *            ÍÆ½øµÄÎÄ±¾
+	 *            ï¿½Æ½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½
 	 */
 	public void push(int location, String search) {
 		move(location);
@@ -215,7 +214,7 @@ public class PointReader {
 	}
 
 	/**
-	 * ÒÆ¶¯ËÑË÷Î»ÖÃ
+	 * ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
 	 * 
 	 * @param point
 	 */
@@ -232,7 +231,7 @@ public class PointReader {
 	}
 
 	/**
-	 * Ö®Ç°µÄÎÄ±¾
+	 * Ö®Ç°ï¿½ï¿½ï¿½Ä±ï¿½
 	 * 
 	 * @return
 	 */
@@ -241,7 +240,7 @@ public class PointReader {
 	}
 
 	/**
-	 * Ö®ºóµÄÎÄ±¾
+	 * Ö®ï¿½ï¿½ï¿½ï¿½Ä±ï¿½
 	 * 
 	 * @return
 	 */
