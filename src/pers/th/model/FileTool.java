@@ -1,7 +1,6 @@
 package pers.th.model;
 
 import java.io.File;
-import java.io.IOException;
 
 public class FileTool {
 

@@ -1,15 +1,11 @@
 package pers.th;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -121,12 +117,12 @@ public class RandomAnalysis {
 	// printPoint("hello world");
 
 	/**
-	 * ·¶Î§¿±Ì½
+	 * ï¿½ï¿½Î§ï¿½ï¿½Ì½
 	 * 
 	 * @param hashCodes
-	 *            ËùÓÐµÄ¹þÏ£
+	 *            ï¿½ï¿½ï¿½ÐµÄ¹ï¿½Ï£
 	 * @param count
-	 *            ÐèÒªÉú³É¶àÉÙ¿ÉÓÃÐòÁÐ
+	 *            ï¿½ï¿½Òªï¿½ï¿½ï¿½É¶ï¿½ï¿½Ù¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public void scanner(StringBuffer hashCodes, int count) {
 		for (int i = 0; i < 999; i++) {
