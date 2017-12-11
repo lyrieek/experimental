@@ -10,103 +10,95 @@ import java.util.regex.Pattern;
 
 public class Configs {
 
-    private Properties prop;
+	private Properties prop;
 
-    private Map<String, String> templates;
+	private Map<String, String> templates;
 
-    public void loadProperties() {
-	try {
-	    prop = new Properties();
-	    prop.load(new FileInputStream(new File("set.properties")));
-	    setTemplates(new HashMap<>());
-	    // System.out.println(prop.get("template_path"));
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
-    }
-
-    public void readTemplates() {
-	try {
-	    File files = new File(get("template_path"));
-	    if (!files.exists() && !files.isDirectory()) {
-		System.out.println("not find");
-		return;
-	    }
-	    for (File file : files.listFiles()) {
-		int length = 0;
-		byte[] buffer = new byte[512];
-		StringBuffer template = new StringBuffer();
-		FileInputStream fis = new FileInputStream(file);
-		while ((length = fis.read(buffer)) != -1) {
-		    template.append(new String(buffer, 0, length));
+	public void loadProperties() {
+		try {
+			prop = new Properties();
+			prop.load(new FileInputStream(new File("set.properties")));
+			setTemplates(new HashMap<>());
+			// System.out.println(prop.get("template_path"));
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		fis.close();
-		String str = template.toString();
-		while (true) {
-		    // update time,not matcher!
-		    Matcher matcher = Pattern.compile("\\$\\{[a-zA-Z0-9_-]{1,}\\}").matcher(str);
-		    if (!matcher.find()) {
-			break;
-		    }
-		    String switchs = str.substring(matcher.start(), matcher.end());
-		    String cases = switchs.substring(2, switchs.length() - 1);
-		    switch (cases) {
-		    case "demoName":
-			str = str.replace(switchs, get("demo_name"));
-			break;
-		    case "DemoName":
-			String demoName = get("demo_name");
-			demoName = (demoName.charAt(0) + "").toUpperCase() + demoName.substring(1);
-			str = str.replace(switchs, demoName);
-			break;
-		    }
+	}
+
+	public void readTemplates() {
+		try {
+			File files = new File(get("template_path"));
+			if (!files.exists() && !files.isDirectory()) {
+				System.out.println("not find");
+				return;
+			}
+			for (File file : files.listFiles()) {
+				int length = 0;
+				byte[] buffer = new byte[512];
+				StringBuffer template = new StringBuffer();
+				FileInputStream fis = new FileInputStream(file);
+				while ((length = fis.read(buffer)) != -1) {
+					template.append(new String(buffer, 0, length));
+				}
+				fis.close();
+				String str = template.toString();
+				while (true) {
+					// update time,not matcher!
+					Matcher matcher = Pattern.compile("\\$\\{[a-zA-Z0-9_-]{1,}\\}").matcher(str);
+					if (!matcher.find()) {
+						break;
+					}
+					String switchs = str.substring(matcher.start(), matcher.end());
+					String cases = switchs.substring(2, switchs.length() - 1);
+					switch (cases) {
+					case "demoName":
+						str = str.replace(switchs, get("demo_name"));
+						break;
+					case "DemoName":
+						String demoName = get("demo_name");
+						demoName = (demoName.charAt(0) + "").toUpperCase() + demoName.substring(1);
+						str = str.replace(switchs, demoName);
+						break;
+					}
+				}
+				addTemplate(file.getName(), str);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		addTemplate(file.getName(), str);
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
 	}
-    }
 
-    public String get(String key) {
-	String value = prop.getProperty(key);
-	Matcher matcher = Pattern.compile("\\$\\{([^\\}]+)\\}").matcher(value);
-	StringBuffer buffer = new StringBuffer();
-	while (matcher.find()) {
-	    String matcherKey = matcher.group(1);
-	    String matchervalue = prop.getProperty(matcherKey);
-	    if (matchervalue != null) {
-		matcher.appendReplacement(buffer, matchervalue);
-	    }
+	
+	public String get(String key) {
+		String value = prop.getProperty(key);
+		Matcher matcher = Pattern.compile("\\$\\{([^\\}]+)\\}").matcher(value);
+		StringBuffer buffer = new StringBuffer();
+		while (matcher.find()) {
+			String matcherKey = matcher.group(1);
+			String matchervalue = prop.getProperty(matcherKey);
+			if (matchervalue != null) {
+				matcher.appendReplacement(buffer, matchervalue);
+			}
+		}
+		matcher.appendTail(buffer);
+		return buffer.toString();
 	}
-	matcher.appendTail(buffer);
-	return buffer.toString();
-    }
 
-    // public String get(String key) {
-    // return getProperty(key).toString();
-    // }
+	public String getTemplate(String key) {
+		return templates.get(key);
+	}
 
-    @Deprecated
-    public Object getProperty(String key) {
-	return prop.get(key);
-    }
+	public void addTemplate(String key, String value) {
+		prop.put(key, value);
+		templates.put(key, value);
+	}
 
-    public String getTemplate(String key) {
-	return templates.get(key);
-    }
+	public Map<String, String> getTemplates() {
+		return templates;
+	}
 
-    public void addTemplate(String key, String value) {
-	prop.put(key, value);
-	templates.put(key, value);
-    }
-
-    public Map<String, String> getTemplates() {
-	return templates;
-    }
-
-    private void setTemplates(Map<String, String> templates) {
-	this.templates = templates;
-    }
+	private void setTemplates(Map<String, String> templates) {
+		this.templates = templates;
+	}
 
 }
