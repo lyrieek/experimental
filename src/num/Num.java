@@ -4,7 +4,7 @@ public class Num {
 
 	public static void main(String[] args) {
 		String a = "42342";
-		String b = "23423";
+//		String b = "23423";
 		// System.out.println(analysis(a, b));
 		
 		StringBuffer d = new StringBuffer(a);
@@ -13,19 +13,19 @@ public class Num {
 		}
 	}
 
-	public static void main2(String[] args) {
-		for (int i = 0; i < 4325532; i++) {
-			String a = ((Math.random() + "a").hashCode() + "").replace("-", "").replace(".", "");
-			String b = ((Math.random() + "c").hashCode() + "").replace("-", "").replace(".", "");
-			// System.out.println(analysis(a, b));
-			long n = Long.parseLong(analysis(a, b).toString());
-			long sum = Long.parseLong(a) + Long.parseLong(b);
-			if (n != sum) {
-				System.out.println(a + ":" + b);
-				System.out.println(n + "!=" + sum);
-			}
-		}
-	}
+//	public static void main2(String[] args) {
+//		for (int i = 0; i < 4325532; i++) {
+//			String a = ((Math.random() + "a").hashCode() + "").replace("-", "").replace(".", "");
+//			String b = ((Math.random() + "c").hashCode() + "").replace("-", "").replace(".", "");
+//			// System.out.println(analysis(a, b));
+//			long n = Long.parseLong(analysis(a, b).toString());
+//			long sum = Long.parseLong(a) + Long.parseLong(b);
+//			if (n != sum) {
+//				System.out.println(a + ":" + b);
+//				System.out.println(n + "!=" + sum);
+//			}
+//		}
+//	}
 
 	private static StringBuffer analysis(String a, String b) {
 		char[] as = a.toCharArray();

@@ -2,7 +2,6 @@ package pers.ds;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DataWarp implements Serializable{
@@ -67,6 +66,14 @@ public class DataWarp implements Serializable{
 
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	public String getType() {
+		return type;
 	}
 
 	@Override

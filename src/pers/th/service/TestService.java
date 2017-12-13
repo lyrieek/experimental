@@ -9,7 +9,6 @@ import java.net.URL;
 import java.util.Properties;
 
 import java.io.OutputStream;
-import java.math.BigDecimal;
 
 public class TestService {
 

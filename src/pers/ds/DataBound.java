@@ -38,7 +38,7 @@ public class DataBound {
 		return new DataBound();
 	}
 	
-	public DataWarp readOnly(String key) {
+	public DataWarp readOnly() {
 		syncToMemory();
 		DataWarp dWarp = get("ss");
 		close();

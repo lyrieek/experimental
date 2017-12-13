@@ -1,6 +1,5 @@
 package pers.th.sl;
 
-import java.awt.Toolkit;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
@@ -49,7 +48,7 @@ public class Command {
 	}
 
 	/**
-	 * ½âÎöa.b±í´ïÊ½ a:class b:method
+	 * ï¿½ï¿½ï¿½ï¿½a.bï¿½ï¿½ï¿½Ê½ a:class b:method
 	 */
 	public void analysis(String expression) {
 		int point = expression.lastIndexOf(".");
@@ -65,6 +64,7 @@ public class Command {
 			try {
 				instance = Class.forName(className);
 			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
 				throw new RuntimeException("class not find:" + className);
 			}
 		}
@@ -77,7 +77,7 @@ public class Command {
 	}
 
 	/**
-	 * ´æ´¢Ò»¸öº¯Êý
+	 * ï¿½æ´¢Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param method
 	 */

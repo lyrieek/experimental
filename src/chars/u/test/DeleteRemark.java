@@ -4,17 +4,16 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import chars.u.*;
 import pers.th.util.FileReader;
 
 public class DeleteRemark {
 
-	@SuppressWarnings("resource")
-	public static void main2(String[] args) {
-		System.out.println(new Scanner(System.in).nextLine().replaceAll("\\\\", "/"));
-	}
+//	@SuppressWarnings("resource")
+//	public static void main2(String[] args) {
+//		System.out.println(new Scanner(System.in).nextLine().replaceAll("\\\\", "/"));
+//	}
 
 	public static List<Function> loadFunctions(BaseHandle instance) throws Exception {
 		List<Function> ms = new ArrayList<>();

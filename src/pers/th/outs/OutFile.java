@@ -51,7 +51,7 @@ public class OutFile {
 	}
 
 	public static void getset() throws Exception {
-		List<String> ls = IOUtils.readLines(new FileInputStream(new File("template2\\list")));
+		List<String> ls = IOUtils.readLines(new FileInputStream(new File("template2\\list")),"utf-8");
 		for (String item : ls) {
 			Words field = new Words(item).camel();
 //			System.out.println(field+":{from:\""+field+"\"},"); 
@@ -101,7 +101,7 @@ public class OutFile {
 				w.replace(item.toString(), WordsFactory.builder(value).pascal().toString());
 			}
 		}
-		IOUtils.write(w.toString(), new FileOutputStream(new File("G:\\MessagePage"+name+".java")));
+		IOUtils.write(w.toString(), new FileOutputStream(new File("G:\\MessagePage"+name+".java")),"utf-8");
 		System.out.println(w);
 	}
 

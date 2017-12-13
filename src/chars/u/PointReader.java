@@ -72,42 +72,42 @@ public class PointReader {
 		status.printfHistroy();
 	}
 
-	public static void main2(String[] args) {
-		String state = "begin";
-		PointReader pReader = new PointReader(FileReader.reader("src//pers//th//i18n.txt"));
-		pReader.saveRegex("\\S+");
-		Variables vars = new Variables();
-		StringBuffer block = new StringBuffer();
-		while (pReader.pushRegex()) {
-			String item = pReader.item();
-
-			if (state.equals("begin")) {
-				block.setLength(0);
-				if (item.startsWith("$")) {
-					state = "define";
-					String field = pReader.regexItem("[A-Za-z]{1,}([0-9]*)?");
-					vars.add(field);
-				}
-				if (item.startsWith(":")) {
-					System.out.println(vars.get(item.substring(1)));
-					state = "begin";
-				}
-			}
-
-			if (state.equals("define")) {
-				if (item.endsWith(";")) {
-					item = item.substring(0, item.length() - 1);
-					vars.update(DataValue.reverse(item));
-					state = "begin";
-				}
-			}
-
-			// System.out.println(pReader.location() + ">>" + pReader.line() +
-			// ">>" + pReader.column() + ":" + pReader.item());
-
-		}
-		System.out.println(vars);
-	}
+//	public static void main2(String[] args) {
+//		String state = "begin";
+//		PointReader pReader = new PointReader(FileReader.reader("src//pers//th//i18n.txt"));
+//		pReader.saveRegex("\\S+");
+//		Variables vars = new Variables();
+//		StringBuffer block = new StringBuffer();
+//		while (pReader.pushRegex()) {
+//			String item = pReader.item();
+//
+//			if (state.equals("begin")) {
+//				block.setLength(0);
+//				if (item.startsWith("$")) {
+//					state = "define";
+//					String field = pReader.regexItem("[A-Za-z]{1,}([0-9]*)?");
+//					vars.add(field);
+//				}
+//				if (item.startsWith(":")) {
+//					System.out.println(vars.get(item.substring(1)));
+//					state = "begin";
+//				}
+//			}
+//
+//			if (state.equals("define")) {
+//				if (item.endsWith(";")) {
+//					item = item.substring(0, item.length() - 1);
+//					vars.update(DataValue.reverse(item));
+//					state = "begin";
+//				}
+//			}
+//
+//			// System.out.println(pReader.location() + ">>" + pReader.line() +
+//			// ">>" + pReader.column() + ":" + pReader.item());
+//
+//		}
+//		System.out.println(vars);
+//	}
 
 
 	public TextPoint getTextPoint() {

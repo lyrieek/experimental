@@ -1,42 +1,36 @@
 package pers.th.util;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.imageio.ImageIO;
 
 import org.apache.commons.io.IOUtils;
 
 public class FileReader {
 
-	public static void main2(String[] args) {
-		final String base = "@#&$%*o+!;.";// ×Ö·û´®ÓÉ¸´ÔÓµ½¼òµ¥
-		try {
-			final BufferedImage image = ImageIO.read(new File("C:\\Users\\user\\Desktop/0.jpg"));
-			for (int y = 0; y < image.getHeight(); y += 2) {
-				for (int x = 0; x < image.getWidth(); x++) {
-					final int pixel = image.getRGB(x, y);
-					final int r = (pixel & 0xff0000) >> 16, g = (pixel & 0xff00) >> 8, b = pixel & 0xff;
-					final float gray = 0.299f * r + 0.578f * g + 0.114f * b;
-					final int index = Math.round(gray * (base.length() + 1) / 255);
-					System.out.print(index >= base.length() ? " " : String.valueOf(base.charAt(index)));
-				}
-				System.out.println();
-			}
-		} catch (final IOException e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void main2(String[] args) {
+//		final String base = "@#&$%*o+!;.";
+//		try {
+//			final BufferedImage image = ImageIO.read(new File("C:\\Users\\user\\Desktop/0.jpg"));
+//			for (int y = 0; y < image.getHeight(); y += 2) {
+//				for (int x = 0; x < image.getWidth(); x++) {
+//					final int pixel = image.getRGB(x, y);
+//					final int r = (pixel & 0xff0000) >> 16, g = (pixel & 0xff00) >> 8, b = pixel & 0xff;
+//					final float gray = 0.299f * r + 0.578f * g + 0.114f * b;
+//					final int index = Math.round(gray * (base.length() + 1) / 255);
+//					System.out.print(index >= base.length() ? " " : String.valueOf(base.charAt(index)));
+//				}
+//				System.out.println();
+//			}
+//		} catch (final IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	public static void main(String[] args) throws Exception {
-		for (String item : IOUtils.toString(new FileInputStream("G:/th/CmsApplicationTest/src/pers/th/i18n.txt")).split(System.lineSeparator())) {
+		for (String item : IOUtils.toString(new FileInputStream("G:/th/CmsApplicationTest/src/pers/th/i18n.txt"),"utf-8").split(System.lineSeparator())) {
 			String[] field = item.replace("$scope.", "").replace("translations.", "").replace(";", "").split("=");
 			if (field.length != 2) {
 				continue;

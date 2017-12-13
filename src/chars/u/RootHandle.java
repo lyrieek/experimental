@@ -1,11 +1,5 @@
 package chars.u;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 public class RootHandle {
 	
 	
@@ -21,7 +15,7 @@ public class RootHandle {
 	}
 	
 	@Handle("operator")
-	public String op(String item) {
+	public String op(@SuppressWarnings("unused") String item) {
 		return "read";
 	}
 

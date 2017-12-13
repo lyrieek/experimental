@@ -1,20 +1,14 @@
 package pers.th.service;
 
-import java.io.File;
-import java.io.RandomAccessFile;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.Set;
 public class I18nUpdate {
 
 	static final String charset = "UTF-8";
@@ -57,13 +51,13 @@ public class I18nUpdate {
 			sca.close();
 			
 			/*"
-"MedicalCard":"Ò½ÁÆ¿¨"
-"Approval":"ÅúºËÈÕÆÚ"
-"ChineseName":"ÖÐÎÄÐÕÃû"
-"To":"ÖÁ"
-"NameL3":"ÖÐÎÄÃû×Ö"
-"Scheme":"¼Æ»®"
-"CardCode":"±àÂë"
+"MedicalCard":"Ò½ï¿½Æ¿ï¿½"
+"Approval":"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+"ChineseName":"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+"To":"ï¿½ï¿½"
+"NameL3":"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+"Scheme":"ï¿½Æ»ï¿½"
+"CardCode":"ï¿½ï¿½ï¿½ï¿½"
 */
 			
 			
@@ -110,49 +104,49 @@ public class I18nUpdate {
 		System.out.println(field);
 	}
 
-	private static void outJSON() {
-		try {
-			Map<String, String> json = new HashMap<String, String>();
-			json.put("abc", "123");
-			json.put("sdf", "234");
-			json.put("wer", "456");
-			RandomAccessFile fw = new RandomAccessFile("G:\\test\\lcoale.en-US.json.txt", "rws");
-//			FileWriter fw = new FileWriter(new File("G:\\test\\lcoale.en-US.json.txt"));
-			String templateJson = "\t\"${key}\":\"${value}\"";
-			writeLine(fw,"{");
-			writeLine(fw);
-			Set<String> sets = json.keySet();
-			Iterator<String> item = sets.iterator();
-			while (!sets.isEmpty()) {
-				
-				String keyItem = item.next();
-				String field = templateJson;
-				field = field.replace("${key}", keyItem);
-				field = field.replace("${value}", json.get(keyItem));
-				fw.write(String.format("\t\"%s\":\"%s\"",keyItem,json.get(keyItem)).getBytes());
-				if (item.hasNext()) {
-					writeLine(fw,",");
-					continue;
-				}
-				writeLine(fw);
-				break;
-			}
-			writeLine(fw,"}");
-			fw.close();
-		} catch (Exception e) {
-		}
-	}
+//	private static void outJSON() {
+//		try {
+//			Map<String, String> json = new HashMap<String, String>();
+//			json.put("abc", "123");
+//			json.put("sdf", "234");
+//			json.put("wer", "456");
+//			RandomAccessFile fw = new RandomAccessFile("G:\\test\\lcoale.en-US.json.txt", "rws");
+////			FileWriter fw = new FileWriter(new File("G:\\test\\lcoale.en-US.json.txt"));
+//			String templateJson = "\t\"${key}\":\"${value}\"";
+//			writeLine(fw,"{");
+//			writeLine(fw);
+//			Set<String> sets = json.keySet();
+//			Iterator<String> item = sets.iterator();
+//			while (!sets.isEmpty()) {
+//				
+//				String keyItem = item.next();
+//				String field = templateJson;
+//				field = field.replace("${key}", keyItem);
+//				field = field.replace("${value}", json.get(keyItem));
+//				fw.write(String.format("\t\"%s\":\"%s\"",keyItem,json.get(keyItem)).getBytes());
+//				if (item.hasNext()) {
+//					writeLine(fw,",");
+//					continue;
+//				}
+//				writeLine(fw);
+//				break;
+//			}
+//			writeLine(fw,"}");
+//			fw.close();
+//		} catch (Exception e) {
+//		}
+//	}
 
-	private static void writeLine(RandomAccessFile fw,String... prefix) throws IOException {
-		String context = "";
-		if (prefix != null) {
-			for (int i = 0; i < prefix.length; i++) {
-				context += prefix[i];
-			}
-		}
-		context += System.lineSeparator();
-		fw.write(context.getBytes());
-	}
+//	private static void writeLine(RandomAccessFile fw,String... prefix) throws IOException {
+//		String context = "";
+//		if (prefix != null) {
+//			for (int i = 0; i < prefix.length; i++) {
+//				context += prefix[i];
+//			}
+//		}
+//		context += System.lineSeparator();
+//		fw.write(context.getBytes());
+//	}
 
 	public static void copy(InputStream reader, OutputStream writer) throws Exception {
 		int length = 0;
@@ -165,12 +159,12 @@ public class I18nUpdate {
 		writer.close();
 	}
 
-	public static void writeOutFile(String string, StringBuffer content) throws Exception {
-		FileOutputStream fos = new FileOutputStream(new File("G:\\test\\json.txt"), true);
-		fos.write(content.toString().getBytes(charset));
-		fos.flush();
-		fos.close();
-	}
+//	public static void writeOutFile(String string, StringBuffer content) throws Exception {
+//		FileOutputStream fos = new FileOutputStream(new File("G:\\test\\json.txt"), true);
+//		fos.write(content.toString().getBytes(charset));
+//		fos.flush();
+//		fos.close();
+//	}
 
 	public static StringBuffer readByUrl(String url) throws Exception {
 		HttpURLConnection urlcon = (HttpURLConnection) new URL(url).openConnection();

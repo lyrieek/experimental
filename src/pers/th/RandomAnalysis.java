@@ -116,14 +116,6 @@ public class RandomAnalysis {
 	// }
 	// printPoint("hello world");
 
-	/**
-	 * ��Χ��̽
-	 * 
-	 * @param hashCodes
-	 *            ���еĹ�ϣ
-	 * @param count
-	 *            ��Ҫ���ɶ��ٿ�������
-	 */
 	public void scanner(StringBuffer hashCodes, int count) {
 		for (int i = 0; i < 999; i++) {
 			Matcher m = Pattern.compile(i + "").matcher(hashCodes.toString());
@@ -137,7 +129,7 @@ public class RandomAnalysis {
 		}
 	}
 
-	public void verifyChar(String string, int count, int start, int end, int length) {
+	public void verifyChar(int count, int start, int end, int length) {
 		for (int i = start; i < end; i++) {
 			Random rand = new Random(count + i);
 			char[] chars = new char[length];
