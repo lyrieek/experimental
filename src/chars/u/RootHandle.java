@@ -15,7 +15,7 @@ public class RootHandle {
 	}
 	
 	@Handle("operator")
-	public String op(@SuppressWarnings("unused") String item) {
+	public String op(String item) {
 		return "read";
 	}
 
