@@ -15,24 +15,24 @@ import org.apache.commons.io.IOUtils;
 public class HttpClient {
 
 	public static void main(String[] args) throws Exception {
-		URL url = new URL("http://member.med66.com/member/mobile_register/registerSendRandcode.shtm");
-		HttpURLConnection huc = (HttpURLConnection) url.openConnection();
-		Properties prop = new Properties();
-		prop.load(new FileInputStream("src/request.properties"));
-		for (Entry<Object, Object> item : prop.entrySet()) {
-			huc.addRequestProperty(item.getKey().toString(), item.getValue().toString());
-		}
-		huc.setRequestMethod("POST");
-		huc.setDoOutput(true);
-		huc.setDoInput(true);
-		OutputStream os = huc.getOutputStream();
-		os.write("mobilePhone=13590160628&randcodeAjax=2043".getBytes());
-		os.close();
-		InputStream is = huc.getInputStream();
-		List<String> list = IOUtils.readLines(is,"gbk");
-		for (String item : list) {
-			System.out.println(item);
-		}
+//		URL url = new URL(" ");
+//		HttpURLConnection huc = (HttpURLConnection) url.openConnection();
+//		Properties prop = new Properties();
+//		prop.load(new FileInputStream("src/request.properties"));
+//		for (Entry<Object, Object> item : prop.entrySet()) {
+//			huc.addRequestProperty(item.getKey().toString(), item.getValue().toString());
+//		}
+//		huc.setRequestMethod("POST");
+//		huc.setDoOutput(true);
+//		huc.setDoInput(true);
+//		OutputStream os = huc.getOutputStream();
+//		os.write("mobilePhone=13590160628&randcodeAjax=2043".getBytes());
+//		os.close();
+//		InputStream is = huc.getInputStream();
+//		List<String> list = IOUtils.readLines(is,"gbk");
+//		for (String item : list) {
+//			System.out.println(item);
+//		}
 		
 	}
 
