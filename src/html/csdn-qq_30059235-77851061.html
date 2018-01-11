@@ -1,0 +1,26 @@
+<html>
+
+	<head>
+	    <link rel="Stylesheet" type="text/css" href="csdn.detail.css" />
+	</head>
+
+	<body>
+		<div class="markdown_views"><p>问题来源：表中有text字段，使用mybatis生成工具后生成该表生成实体类时会多一个文件会，比如生成一个User实体类会多一个UserWithBlobs,多出的这个实体类中的变量就是表中的类型为text的字段而实体类User中就没类型为text字段的变量，UserWithBlobs继承User,而对于的mapper.java和mapper.xml文件的查询也是返回UserWithBlobs，mapper.xml中的查询看着也完全没毛病，比如说UserWithBlobs selectByPrimaryKey（String id ）; 在使用这个方法时就会报java.lang.ClassCastException异常，User 不能转为 UserWithBlobs；换成User selectByPrimaryKey（String id ）; 就不报错了，所以原因就是text类型有毒。。。。</p>
+
+<hr>
+
+<p>解决办法：生成时不要生成UserWithBlobs这个实体类，在使用mybatis生成工具生成表中有类型为text的实体类时要在table中加点东西 <br>
+例如上面user表中的a字段为text类型</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">table</span> <span class="hljs-attribute">domainObjectName</span>=<span class="hljs-value">"User"</span> <span class="hljs-attribute">tableName</span>=<span class="hljs-value">"user"</span>&gt;</span>  
+    <span class="hljs-tag">&lt;<span class="hljs-title">columnOverride</span> <span class="hljs-attribute">column</span>=<span class="hljs-value">"a"</span> <span class="hljs-attribute">javaType</span>=<span class="hljs-value">"java.lang.String"</span> <span class="hljs-attribute">jdbcType</span>=<span class="hljs-value">"VARCHAR"</span> /&gt;</span>  
+<span class="hljs-tag">&lt;/<span class="hljs-title">table</span>&gt;</span>  </code></pre>
+
+<p>这样就不会生成UserWithBlobs了，后面查询就不会坑了。。。 <br>
+解决办法网上找的：<a href="http://www.cnblogs.com/grey-wolf/p/7238780.html">http://www.cnblogs.com/grey-wolf/p/7238780.html</a></p></div>
+        </div>
+	</body>
+
+</html>

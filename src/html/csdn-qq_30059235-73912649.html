@@ -1,0 +1,101 @@
+<html>
+
+	<head>
+	    <link rel="Stylesheet" type="text/css" href="csdn.detail.css" />
+	</head>
+
+	<body>
+		<div class="markdown_views"><p>1.新建Java类型DateTag</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs java"><span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.text.SimpleDateFormat;
+<span class="hljs-keyword">import</span> java.util.Calendar;
+
+<span class="hljs-keyword">import</span> javax.servlet.jsp.JspException;
+<span class="hljs-keyword">import</span> javax.servlet.jsp.tagext.TagSupport;
+
+<span class="hljs-javadoc">/**
+ * 用于页面 jstl时间格式化
+ *
+ *<span class="hljs-javadoctag"> @Title</span>: JSTLDateUtils.java
+ *<span class="hljs-javadoctag"> @Description</span>: TODO(用一句话描述该文件做什么)
+ *<span class="hljs-javadoctag"> @author</span> eleven.song(宋涛)
+ *<span class="hljs-javadoctag"> @date</span> 2014 -3- 4 下午06:28:51
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DateTag</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">TagSupport</span> {</span>
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">6464168398214506236</span>L;
+
+    <span class="hljs-keyword">private</span> String value;
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">doStartTag</span>() <span class="hljs-keyword">throws</span> JspException {
+        String vv = <span class="hljs-string">""</span>+value ;
+        <span class="hljs-keyword">long</span> time = Long.valueOf(vv);
+        Calendar c = Calendar. getInstance();
+        c.setTimeInMillis(time);
+        SimpleDateFormat dateformat = <span class="hljs-keyword">new</span> SimpleDateFormat(<span class="hljs-string">"yyyy-MM-dd HH:mm:ss"</span> );
+        String s = dateformat.format(c.getTime());
+        <span class="hljs-keyword">try</span> {
+            pageContext.getOut().write(s);
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span> .doStartTag();
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setValue</span>(String value) {
+        <span class="hljs-keyword">this</span>.value = value;
+    }
+
+}</code></pre>
+
+<p>2.新建datetag.tld文件放在WEB-INF文件下</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding= "UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">taglib</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">tlib-version</span> &gt;</span>1.0<span class="hljs-tag">&lt;/<span class="hljs-title">tlib-version</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">jsp-version</span> &gt;</span>2.2<span class="hljs-tag">&lt;/<span class="hljs-title">jsp-version</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">tag</span> &gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">name</span>&gt;</span> date<span class="hljs-tag">&lt;/<span class="hljs-title">name</span> &gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">tag-class</span>&gt;</span> com.vipshop.scheduler.util.DateTag<span class="hljs-tag">&lt;/<span class="hljs-title">tag-class</span> &gt;</span>       
+        <span class="hljs-tag">&lt;<span class="hljs-title">body-content</span>&gt;</span> JSP<span class="hljs-tag">&lt;/<span class="hljs-title">body-content</span> &gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">attribute</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">name</span>&gt;</span> value<span class="hljs-tag">&lt;/<span class="hljs-title">name</span> &gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">required</span>&gt;</span> true<span class="hljs-tag">&lt;/<span class="hljs-title">required</span> &gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">rtexprvalue</span>&gt;</span> true<span class="hljs-tag">&lt;/<span class="hljs-title">rtexprvalue</span> &gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">attribute</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">tag</span> &gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">taglib</span>&gt;</span></code></pre>
+
+<p>jsp版本可以在自己的Tomcat找到jsp-api.jar复制出来解压并查看 <br>
+MANIFEST.MF文件 其中 <br>
+Specification-Version: 2.2  就是jsp的版本2.2</p>
+
+<p>3 .  在web.xml中加入引用</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">jsp-config</span> &gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">taglib</span> &gt;</span>       
+             <span class="hljs-tag">&lt;<span class="hljs-title">taglib-uri</span>&gt;</span> /tags<span class="hljs-tag">&lt;/<span class="hljs-title">taglib-uri</span> &gt;</span>  
+             <span class="hljs-tag">&lt;<span class="hljs-title">taglib-location</span>&gt;</span> /WEB-INF/datetag.tld<span class="hljs-tag">&lt;/<span class="hljs-title">taglib-location</span> &gt;</span>           
+      <span class="hljs-tag">&lt;/<span class="hljs-title">taglib</span> &gt;</span>  
+  <span class="hljs-tag">&lt;/<span class="hljs-title">jsp-config</span> &gt;</span></code></pre>
+
+<p><strong>注意文件路径是 “/” 不能用 “\” </strong> <br>
+4 . 在jsp页面中引用</p>
+
+<pre class="prettyprint"><code class=" hljs mel">&lt;<span class="hljs-variable">%@</span> taglib uri=<span class="hljs-string">"/tags"</span> prefix=<span class="hljs-string">"date"</span><span class="hljs-variable">%&gt;</span>
+&lt; <span class="hljs-keyword">date</span>:<span class="hljs-keyword">date</span> value =<span class="hljs-string">"${trigger.startTime} "</span>/&gt;</code></pre>
+
+<p>转自：<a href="http://blog.csdn.net/tayanxunhua/article/details/20488457" target="_blank">http://blog.csdn.net/tayanxunhua/article/details/20488457</a></p></div>
+        </div>
+	</body>
+
+</html>

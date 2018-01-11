@@ -2,6 +2,7 @@ package pers.th.util;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class FileReader {
 //		}
 //	}
 	
-	public static void main(String[] args) throws Exception {
+	public static void main2(String[] args) throws Exception {
 		for (String item : IOUtils.toString(new FileInputStream("G:/th/CmsApplicationTest/src/pers/th/i18n.txt"),"utf-8").split(System.lineSeparator())) {
 			String[] field = item.replace("$scope.", "").replace("translations.", "").replace(";", "").split("=");
 			if (field.length != 2) {
@@ -132,6 +133,23 @@ public class FileReader {
 		}
 		return template.toString();
 	}
+
+	public static void writer(String path, String result) {
+		try {
+			File file = new File(path);
+			file.createNewFile();
+			FileWriter fw = new FileWriter(file);
+			fw.write(result);
+			fw.flush();
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+//	public static void main(String[] args) {
+//		writer("G:\\th\\CmsApplicationTest\\src\\html\\csdn-qq_30059235-72779011.html","sadasd");
+//	}
 
 }
 

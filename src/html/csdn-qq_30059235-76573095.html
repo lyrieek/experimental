@@ -1,0 +1,20 @@
+<html>
+
+	<head>
+	    <link rel="Stylesheet" type="text/css" href="csdn.detail.css" />
+	</head>
+
+	<body>
+		<div class="markdown_views"><p>在执行main方法或Test方法时出现，错误：找不到主类等类似异常，引起这个错误的原因就是找不到该类编译文件！ <br>
+所以解决办法就是看看你这个类编译没或者访问编译文件的路径对不对，我遇到这个错误的项目时maven项目，网上说是jdk配的有问题，但我的其它项目都能执行就这个项目出现这个错误，所以肯定不是jdk的问题，所以我就去看了工作空间中该项目目录下的target文件夹，里面果然没有编译文件，所以报错！ <br>
+解决办法就是： <br>
+Build Path–&gt;Source,设置一下编译路径，就是Output folder <br>
+<img src="http://img.blog.csdn.net/20170802111704619?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzAwNTkyMzU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title=""></p>
+
+<p>如何设置就不说了，截取了一个大哥的图</p>
+
+<p><img src="http://img.blog.csdn.net/20170802111920538?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzAwNTkyMzU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title=""></p></div>
+        </div>
+	</body>
+
+</html>
