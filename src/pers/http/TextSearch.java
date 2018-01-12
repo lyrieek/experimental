@@ -2,6 +2,8 @@ package pers.http;
 
 import java.util.Iterator;
 
+import pers.th.util.text.XStrings;
+
 public class TextSearch implements Iterable<String>, Iterator<String> {
 	private String source;
 	private String search;
@@ -26,6 +28,20 @@ public class TextSearch implements Iterable<String>, Iterator<String> {
 
 	public void eachItem(EachItem eachItem) {
 		this.eachItem = eachItem;
+	}
+	
+	public void eachAHref() {
+		eachItem = new EachItem() {
+
+			@Override
+			public String next(int index) {
+				return tear("<a href=\"/", "\"");
+			}
+		};
+	}
+
+	public String tear(String begin,String end) {
+		return XStrings.tear(source, begin, end, index + search.length());
 	}
 
 	public int index() {

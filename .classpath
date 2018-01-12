@@ -27,5 +27,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-4.1.7.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/master-basic"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
