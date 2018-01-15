@@ -2,7 +2,6 @@ package pers.http;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -22,7 +21,6 @@ import pers.th.util.FileReader;
 
 public class TryGet {
 	public static final Properties prop = new Properties();
-	public static final List<String> userList = new ArrayList<>();
 
 	public static final Template template = new Template(
 			FileReader.reader("G://th/CmsApplicationTest/src/html/csdn.html"));
@@ -36,17 +34,18 @@ public class TryGet {
 	}
 
 	public static void main(String[] args) throws Exception {
-		// String html =
-		// getHTML("http://blog.csdn.net/qq_28379809/article/details/76196150");
-		// System.out.println(html);
-		// FileReader.writer("G:/th/CmsApplicationTest/src/html/qq_28379809-76196150.html",
-		// html);
-		String html = FileReader.reader("src/html/qq_28379809-76196150.html");
+//		String html = getHTML("http://blog.csdn.net/sanqima/article/details/35816883");
+//		FileReader.writer("src/html/sanqima-35816883.html", html);
+		// Blog blog = Blog.read("src/html/qq_28379809-76196150.dat");
+		// System.out.println(blog);
+		String html = FileReader.reader("src/html/sanqima-35816883.html");
 		Blog blog = new Blog();
-		blog.parse(html, "qq_28379809", "http://blog.csdn.net/qq_28379809/article/details/76196150");
-		blog.outputFile(template, "src/html/qq_28379809-76196150-out2.html");
+		blog.parse(html, "moneyshi", "http://blog.csdn.net/moneyshi/article/details/79013906");
+		blog.outputFile(template, "src/html/moneyshi-79013906-out.html");
 		findUsers(html);
-		writeUser();
+		UserManager.writeUser();
+		// blog.serialize("src/html/qq_28379809-76196150.dat");
+
 		// System.out.println(trySplit(html, "class=\"list_item
 		// article_item\""));
 
@@ -67,28 +66,7 @@ public class TryGet {
 	public static void findUsers(String html) {
 		Elements elems = Jsoup.parse(html).getElementsByClass("user_name");
 		for (Element element : elems) {
-			userList.add(element.html());
-		}
-	}
-
-	public static void writeUser() {
-		FileWriter writer = null;
-		try {
-			writer = new FileWriter(new File("src/html/userlist"));
-			for (String userItem : userList) {
-				writer.write(userItem+System.lineSeparator());
-				writer.flush();
-			}
-			userList.clear();
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				writer.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			UserManager.users().add(element.html());
 		}
 	}
 

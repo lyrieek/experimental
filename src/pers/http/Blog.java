@@ -1,11 +1,16 @@
 package pers.http;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import pers.th.util.FileReader;
 
@@ -20,7 +25,7 @@ public class Blog implements Serializable {
 	private String time;
 	private int count;
 	private String author;
-	private String source;
+	private String url;
 	private final Date createDate;
 
 	public Blog() {
@@ -67,26 +72,35 @@ public class Blog implements Serializable {
 		this.author = author;
 	}
 
-	public String getSource() {
-		return source;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setSource(String source) {
-		this.source = source;
+	public void setUrl(String source) {
+		this.url = source;
 	}
 
 	public Date getCreateDate() {
 		return createDate;
 	}
 
-	public void parse(String context, String author, String source) {
+	public void parse(String context, String author, String url) {
 		Document doc = Jsoup.parse(context);
+		Elements elems = doc.getElementsByClass("link_postdate");
+		this.time = elems.isEmpty() ? doc.getElementsByClass("time").eq(0).html() : elems.eq(0).html();
+
+		String txtCount = doc.getElementsByClass("txt").eq(0).html();
+		txtCount = !txtCount.isEmpty() ? txtCount : doc.getElementsByClass("link_view").html().replaceAll("[^0-9]", "");
+		if (txtCount.isEmpty()) {
+			System.err.println("count not find:" + url);
+		} else {
+			this.count = Integer.parseInt(txtCount);
+		}
+
 		this.context = doc.getElementById("article_content").html();
 		this.title = doc.title();
-		this.time = doc.getElementsByClass("time").eq(0).html();
-		this.count = Integer.parseInt(doc.getElementsByClass("txt").eq(0).html());
 		this.author = author;
-		this.source = source;
+		this.url = url;
 	}
 
 	public void outputFile(Template template, String fileOutPath) {
@@ -95,15 +109,38 @@ public class Blog implements Serializable {
 		template.replace("${time}", time);
 		template.replace("${count}", count + "");
 		template.replace("${author}", author);
-		template.replace("${source}", source);
+		template.replace("${source}", url);
 		template.replace("${createDate}", format.format(createDate));
 		FileReader.writer(fileOutPath, template.toString());
 	}
 
 	@Override
 	public String toString() {
-		return "Blog [context=" + context + ", title=" + title + ", time=" + time + ", count=" + count + ", author="
-				+ author + ", source.length=" + (source == null ? 0 : source.length()) + "]";
+		return "Blog [context.length=" + (context == null ? 0 : context.length()) + ", title=" + title + ", time="
+				+ time + ", count=" + count + ", author=" + author + ", url=" + url + "]";
+	}
+
+	public void serialize(String path) {
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path));
+			oos.writeObject(this);
+			oos.flush();
+			oos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static Blog read(String path) {
+		Blog tempBlog = null;
+		try {
+			ObjectInputStream oos = new ObjectInputStream(new FileInputStream(path));
+			tempBlog = (Blog) oos.readObject();
+			oos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tempBlog;
 	}
 
 }
