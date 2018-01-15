@@ -1,4 +1,4 @@
-package pers.http;
+package pers.http.entity;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,6 +12,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import pers.http.Template;
 import pers.th.util.FileReader;
 
 public class Blog implements Serializable {
