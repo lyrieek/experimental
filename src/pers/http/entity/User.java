@@ -46,10 +46,10 @@ public class User {
 	 */
 	private final Date createDate;
 
-	public User(String url) {
+	public User(String userId) {
 		createDate = new Date();
 		try {
-			String html = TryGet.HTTP_CLIENT.getHTML(url);
+			String html = TryGet.HTTP_CLIENT.getHTML("http://my.csdn.net/" + userId);
 			Document doc = Jsoup.parse(html);
 			setUserId(userId);
 			setName(doc.getElementsByClass("person-nick-name").eq(0).text());
@@ -57,7 +57,7 @@ public class User {
 			setWatch(Integer.parseInt(doc.select(".fans_num>b").text()));
 			setDetail(XStrings.join(doc.getElementsByClass("person-detail").text().split("|")));
 		} catch (Exception e) {
-			System.err.println(url + ":error");
+			System.err.println(userId + ":error");
 			e.printStackTrace();
 		}
 	}
@@ -102,7 +102,7 @@ public class User {
 		this.name = name;
 	}
 
-	public Date getCreateDate() {
+	public Date getCreateDate() { 
 		return createDate;
 	}
 
@@ -112,13 +112,8 @@ public class User {
 				+ detail + ", createDate=" + createDate + "]";
 	}
 
-	public static void parse(String userId) throws Exception {
-		User user = new User("http://my.csdn.net/" + userId);
-		System.out.println(user);
-	}
-
 	public static void main(String[] args) throws Exception {
-		parse("zhao4zhong1");
+		System.out.println(new User("zhao4zhong1"));
 	}
 
 }
