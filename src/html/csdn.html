@@ -1,11 +1,32 @@
+<!DOCTYPE html>
 <html>
 
-	<head>
-	    <link rel="Stylesheet" type="text/css" href="csdn.detail.css" />
-	</head>
+<head>
+<link rel="Stylesheet" type="text/css" href="csdn.detail.css" />
+<title>${title}</title>
+<style type="text/css">
+.black {
+	margin: 0 12px;
+}
+</style>
+</head>
 
-	<body>
-		<div class="markdown_views">${context}</div>
-	</body>
+<body>
+	<div>
+		<h2 style="background: #cec9c9; padding: 7px 0;">${title}</h2>
+		<p style="text-align: right;">
+			发表时间:${time}<span class="black"></span>阅读量:${count}
+		</p>
+		<hr />
+	</div>
+	<div class="markdown_views">${context}</div>
+	<div>
+		<hr />
+		<p style="text-align: right;">
+			抓取时间:${createDate}<span class="black"></span>作者:<b>${author}</b><span
+				class="black"></span>来源:<a href="${source}">${source}</a>
+		</p>
+	</div>
+</body>
 
 </html>
