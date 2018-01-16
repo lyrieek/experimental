@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="canonical" href="http://blog.csdn.net/sanqima/article/details/35816883"/> 
+    <script type="text/javascript">
+        var username = "sanqima";
+        var _blogger = username;
+        var blog_address = "http://blog.csdn.net/sanqima";
+        var static_host = "http://csdnimg.cn/release/phoenix/";
+        var currentUserName = ""; 
+        var fileName = '35816883';
+        var commentscount = 0;
+        var islock = false;
+        window.quickReplyflag = true;
+        var totalFloor = 0;
+        var isBole = false;
+        var isDigg = false;
+        var isExpert = false;
+        var isAdm = false;
+    </script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="http://c.csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://c.csdnimg.cn/public/common/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://c.csdnimg.cn/public/static/css/avatar.css">
+    <link rel="stylesheet" href="http://csdnimg.cn/release/phoenix/production/main-ccffe5064b.css">
+    <link rel="stylesheet" href="http://c.csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+
+    <script src="http://csdnimg.cn/rabbit/exposure-click/main-1.0.5.js"></script>
+    <script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/tracking-1.0.2.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://csdnimg.cn/release/phoenix/production/main-6af84bc561.js"></script>
+
+    <script src="http://dup.baidustatic.com/js/ds.js"></script>
+    <script type="text/javascript">
+        // Traffic Stats of the entire Web site By baidu
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        // Traffic Stats of the entire Web site By baidu end
+    </script>
+    <meta name="description" content="例如，String str = &quot;2006-04-15 02:31:04&quot;，要把" />
+    <meta name="keywords" content="正则表达式" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+    <title>正则表达式去掉非数字字符 - CSDN博客</title>
+    <link href="http://csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON">
+</head>
+<body>
+<script id="toolbar-tpl-scriptId" prod="download" skin="black" src="http://c.csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="http://blog.csdn.net/"></script>
+<div class="container clearfix">
+  <main>
+    <article>
+        <h1 class="csdn_top">正则表达式去掉非数字字符</h1>
+        <div class="article_bar clearfix">
+            <div class="artical_tag">
+                <span class="original">
+                原创                </span>
+                <span class="time">2014年06月29日 20:26:30</span>
+            </div>
+
+            <ul class="article_tags clearfix csdn-tracking-statistics tracking-click" data-mod="popu_377" >
+                <li class="tit">标签：</li>
+
+<!--          [startarticletags]-->
+                                                            <li><a href="http://so.csdn.net/so/search/s.do?q=正则表达式&t=blog" target="_blank">正则表达式</a> <span>/</span></li>
+                                    <!--          [endarticletags]-->
+            </ul>
+            <ul class="right_bar">
+                <li><button class="btn-noborder"><i class="icon iconfont icon-read"></i><span class="txt">6236</span></button></li>
+                <li class="edit">
+                    <a class="btn-noborder" href="" >
+                        <i class="icon iconfont icon-bianji"></i><span class="txt">编辑</span>
+                    </a>
+                </li>
+                <li class="del">
+                    <a class="btn-noborder" onclick="javascript:deleteArticle(fileName);return false;">
+                        <i class="icon iconfont icon-shanchu"></i><span class="txt">删除</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="article_content" class="article_content csdn-tracking-statistics tracking-click" data-mod="popu_519" data-dsm="post">
+                        
+<p>&nbsp;应用一：</p>
+<p>&nbsp; 例如，String str = &quot;2006-04-15 02:31:04&quot;，要把这个串变成20060415023104，你会怎么做？</p>
+<p>采用正则表达式，代码如下：</p>
+<pre class="java" name="code">package cn.wuhan.unit9;
+
+public class Qukong {
+	
+	public static void main(String[] args) {
+		String str = &quot;2006-04-15 02:31:04&quot;;
+		String str2 = &quot;&quot;;
+		String[] result = str.split(&quot;\\D&quot;);
+		for(int i=0;i&lt;result.length;i++){
+			System.out.println(result[i]);
+			str2 += result[i];
+		}
+		System.out.println(str2);
+		
+	}
+
+}
+</pre>
+<p>效果如下：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="http://img.blog.csdn.net/20140629202318125?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2FucWltYQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>应用二：</p>
+<p>&nbsp;&nbsp; String s = &quot;32fdsf1er2te3er8yt9hg&quot;，从s中找出3212389，你会怎么做？</p>
+<p>采用正则表达式，代码如下：</p>
+<pre code_snippet_id="410748" snippet_file_name="blog_20140629_2_5732451"  class="java" name="code">package cn.wuhan.unit9;
+
+public class Insert {
+	static String s = &quot;32fdsf1er2te3er8yt9hg&quot;;
+	public static void main(String[] args) {
+		String a = s.replaceAll(&quot;[^0-9]&quot;, &quot;&quot;);
+		System.out.println(a);
+	}
+
+}
+</pre>
+<p>效果如下：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <img src="http://img.blog.csdn.net/20140629202558906?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2FucWltYQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>
+<br>
+</p>
+                    </div>
+    </article>
+      <div class="readall_box csdn-tracking-statistics tracking-click" data-mod="popu_376">
+          <div class="read_more_mask"></div>
+          <a class="btn btn-large btn-gray-fred read_more_btn" target="_self">阅读全文</a>
+      </div>
+      <div class="article_copyright">
+              </div>
+      <ul class="article_collect clearfix csdn-tracking-statistics tracking-click"  data-mod="popu_378">
+          <li class="tit">本文已收录于以下专栏：</li>
+<!--          [startarticlecolumns]-->
+                                <!--          [endarticlecolumns]-->
+      </ul>
+      <div class="comment_box clearfix">
+          <div id="comment_form">
+              <div id="commentsbmitarear">
+                              </div>
+          </div>
+      </div>
+      <div class="comment_li_outbox">
+          <div id="comment_list"></div>
+      </div>
+
+      <div class="more_comment">
+          <div id="comment_bar" class="trackgin-ad" data-mod="popu_385"></div>
+      </div>
+
+      <!-- <h3 class="recommend_tit" id="related">相关文章推荐</h3> -->
+      <div class="recommend_list clearfix" id="rasss">
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/hutao1101175783/article/details/50978247"  target="_blank" strategy="BlogCommendFromBaidu_0">
+                        <dd class="clearfix">
+                          <h2 class="">非数字正则表达式</h2>
+                          <div class="summary">
+                              [^\d]+                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/B/B/0/3_hutao1101175783.jpg" alt="hutao1101175783" title="hutao1101175783"/></li>
+                              <li class="user_name">hutao1101175783</li>
+                              <li class="time">2016年03月25日 11:38</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>3549</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/qq_29290295/article/details/51514014"  target="_blank" strategy="BlogCommendFromBaidu_1">
+                        <dd class="clearfix">
+                          <h2 class="">输入必须是数字，非数字不能输入，正则表达式</h2>
+                          <div class="summary">
+                              应用办事项数：
+								                            </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/6/3/0/3_qq_29290295.jpg" alt="qq_29290295" title="qq_29290295"/></li>
+                              <li class="user_name">qq_29290295</li>
+                              <li class="time">2016年05月27日 11:40</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1376</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <script>
+                      (function() {
+                          var s = "_" + Math.random().toString(36).slice(2);
+                          document.write('<div id="' + s + '"></div>');
+                          (window.slotbydup=window.slotbydup || []).push({
+                              id: '4765209',
+                              container: s,
+                              size: '808,120',
+                              display: 'inlay-fix'
+                          });
+                      })();
+                  </script>
+                                                                <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/wangjia55/article/details/7877915"  target="_blank" strategy="BlogCommendFromBaidu_2">
+                        <dd class="clearfix">
+                          <h2 class="">比较常用的几个正则表达式(匹配数字)</h2>
+                          <div class="summary">
+                              正则表达式用于字符串处理、表单验证等场合，实用高效。现将一些常用的表达式收集于此，以备不时之需。
+
+
+匹配中文字符的正则表达式： [\u4e00-\u9fa5]
+评注：匹配中文还真是个头疼的事...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/8/E/B/3_wangjia55.jpg" alt="wangjia55" title="wangjia55"/></li>
+                              <li class="user_name">wangjia55</li>
+                              <li class="time">2012年08月17日 16:01</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>142178</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/tianyinlove/article/details/46971427"  target="_blank" strategy="BlogCommendFromBaidu_3">
+                        <dd class="clearfix">
+                          <h2 class="">正则表达式怎么匹配非汉字非字母非数字之外的字符</h2>
+                          <div class="summary">
+                              汉字的表示和正则表达式引擎相关，不同引擎的写法不同，下面的写法适用于java引擎，或者一切以unicode来表示字符的引擎。...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/9/6/4/3_tianyinlove.jpg" alt="tianyinlove" title="tianyinlove"/></li>
+                              <li class="user_name">tianyinlove</li>
+                              <li class="time">2015年07月20日 17:31</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>4887</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/wj_j2ee/article/details/8090303"  target="_blank" strategy="BlogCommendFromBaidu_4">
+                        <dd class="clearfix">
+                          <h2 class="">java正则表达式判断数字</h2>
+                          <div class="summary">
+                              "^\\d+$"　　//非负整数（正整数   +   0）     
+  "^[0-9]*[1-9][0-9]*$"　　//正整数     
+  "^((-\\d+)|(0+))$"　　//非正整...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/7/E/D/3_wj_j2ee.jpg" alt="wj_j2ee" title="wj_j2ee"/></li>
+                              <li class="user_name">wj_j2ee</li>
+                              <li class="time">2012年10月19日 16:02</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>50814</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                        <!-- 广告位：PC端-博客详情通栏7（feed流）-808*120 -->
+                  <script>
+                      (function() {
+                          var s = "_" + Math.random().toString(36).slice(2);
+                          document.write('<div id="' + s + '"></div>');
+                          (window.slotbydup=window.slotbydup || []).push({
+                              id: '4983339',
+                              container: s,
+                              size: '808,120',
+                              display: 'inlay-fix'
+                          });
+                      })();
+                  </script>
+                                                                              <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/Gatherfly/article/details/50372931"  target="_blank" strategy="BlogCommendFromBaidu_5">
+                        <dd class="clearfix">
+                          <h2 class="">java正则表达式——验证字符串是否为数字</h2>
+                          <div class="summary">
+                              首先说一下java正则表达式的重点概念:
+第一、相关类：Pattern、Matcher
+第二、典型的调用顺序是 
+Pattern p = Pattern.compile("a*b");
+Matcher...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/9/8/1/3_gatherfly.jpg" alt="Gatherfly" title="Gatherfly"/></li>
+                              <li class="user_name">Gatherfly</li>
+                              <li class="time">2015年12月21日 16:43</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>6129</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/taking_wang/article/details/44676923"  target="_blank" strategy="BlogCommendFromBaidu_6">
+                        <dd class="clearfix">
+                          <h2 class="">oralce正则表达式 替换非数字字符</h2>
+                          <div class="summary">
+                              替换非字符的内容
+
+REGEXP_REPLACE(字段名,'[^0-9]','' )
+
+
+
+l         正则表达式运算符和函数
+ 
+a)      REGEXP_SUBSTR
+REGEXP_S...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/7/6/E/3_taking_wang.jpg" alt="taking_wang" title="taking_wang"/></li>
+                              <li class="user_name">taking_wang</li>
+                              <li class="time">2015年03月27日 14:56</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>310</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/is_zhoufeng/article/details/7645366"  target="_blank" strategy="BlogCommendFromBaidu_7">
+                        <dd class="clearfix">
+                          <h2 class="">java正则表达式 非捕获组详解</h2>
+                          <div class="summary">
+                              这几天看了下正则表达式，对非捕获组(non-capturing)进行下总结。
+主要总结 1个 + 2组  一共5个。
+(?:X) (?=X) (?
+
+一、先从(?:)非捕获组说起。
+下面由一...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/9/3/B/3_is_zhoufeng.jpg" alt="is_zhoufeng" title="is_zhoufeng"/></li>
+                              <li class="user_name">is_zhoufeng</li>
+                              <li class="time">2012年06月08日 14:48</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>11458</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/ethanwalle/article/details/7488376"  target="_blank" strategy="BlogCommendFromBaidu_8">
+                        <dd class="clearfix">
+                          <h2 class="">java正则表达式 非捕获组详解</h2>
+                          <div class="summary">
+                              这几天看了下正则表达式，对非捕获组(non-capturing)进行下总结。
+主要总结 1个 + 2组  一共5个。
+(?:X) (?=X) (?
+一、先从(?:)非捕获组说起。
+下面由一个例...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/A/F/2/3_ethanwalle.jpg" alt="ethanwalle" title="ethanwalle"/></li>
+                              <li class="user_name">ethanwalle</li>
+                              <li class="time">2012年04月23日 09:10</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>3356</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                                    <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/bingjie1217/article/details/15500069"  target="_blank" strategy="BlogCommendFromBaidu_9">
+                        <dd class="clearfix">
+                          <h2 class="">java正则表达式非捕获组详解</h2>
+                          <div class="summary">
+                              非捕获组(non-capturing)： (?:X) (?=X) (?                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/C/C/5/3_bingjie1217.jpg" alt="bingjie1217" title="bingjie1217"/></li>
+                              <li class="user_name">bingjie1217</li>
+                              <li class="time">2013年11月12日 11:31</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>2903</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                    </div>
+  </main>
+<aside>
+  <div class="right_box user_info">
+      <dl class="inf_bar clearfix">
+          <dt class="csdn-tracking-statistics tracking-click" data-mod="popu_381">
+              <a href="http://blog.csdn.net/sanqima" target="_blank">
+                  <img src="http://avatar.csdn.net/9/C/2/3_sanqima.jpg" class="avatar_pic">
+              </a>
+              <span class="medals" title="">
+                  </span>
+          </dt>
+          <dd>
+              <h3 class="csdn-tracking-statistics tracking-click"  data-mod="popu_380"><a href="http://blog.csdn.net/sanqima" target="_blank" id="uid">sanqima</a></h3>
+              <span  class="csdn-tracking-statistics tracking-click" data-mod="popu_379"><a class="btn btn-redborder-small "  id="span_add_follow" target="_self">＋关注</a></span>
+          </dd>
+      </dl>
+      <div class="inf_number_box clearfix">
+          <dl>
+              <dt>原创</dt>
+              <dd>509</dd>
+          </dl>
+          <dl>
+              <dt>粉丝</dt>
+              <dd id='fan'>90</dd>
+          </dl>
+          <dl>
+              <dt>喜欢</dt>
+              <dd>568</dd>
+          </dl>
+          <dl>
+        <dt>码云</dt>
+        <dd>&nbsp;</dd>
+      </dl>
+
+      </div>
+
+  </div>
+          <div class="extension_other csdn-tracking-statistics tracking-click" data-mod="popu_389">
+          <!--u3032528-->
+        <div class="flashrecommend">
+            <script type="text/javascript" src="//cee1.iteye.com/bwocoltly.js"></script>
+        </div>
+      </div>
+      <div class="writings">
+    <div class="public_signal clearfix">
+      <h3>他的最新文章</h3>
+      <a href="http://blog.csdn.net/sanqima" target="_blank" class="more"><span>更多文章</span></a>
+    </div>
+      <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/sanqima/article/details/78954776" target="_blank">解决COM1占用问题</a>
+          </li>
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/sanqima/article/details/78763082" target="_blank">解决wince6.0下 Error: failed PB timebomb check问题</a>
+          </li>
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/sanqima/article/details/78763063" target="_blank">解决WINCE6.0 error C2220: warning treated as error问题</a>
+          </li>
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/sanqima/article/details/77414817" target="_blank">在XP上安装VS2003及注意事项</a>
+          </li>
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/sanqima/article/details/76251335" target="_blank">vs2008里批量删除历史记录与.ncb、.obj等文件</a>
+          </li>
+                </ul>
+  </div>
+            <div class="user-hotArticle sort userSort">
+            <h3>文章分类</h3>
+            <ul class="hotArticle-list userSort-list">
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/940316" class="odd-overhidden floatL">ASP.NET基础控件</a>
+                        <div class="read list-left floatR"><span>1篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/940383" class="odd-overhidden floatL">象棋</a>
+                        <div class="read list-left floatR"><span>1篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/1127206" class="odd-overhidden floatL">DOS编译Java和C程序</a>
+                        <div class="read list-left floatR"><span>5篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/1856669" class="odd-overhidden floatL">Web</a>
+                        <div class="read list-left floatR"><span>17篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/1931107" class="odd-overhidden floatL">C语言</a>
+                        <div class="read list-left floatR"><span>32篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2124893" class="odd-overhidden floatL">matlab编程</a>
+                        <div class="read list-left floatR"><span>27篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2137381" class="odd-overhidden floatL">嵌入式</a>
+                        <div class="read list-left floatR"><span>11篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2171343" class="odd-overhidden floatL">longo/lindo编程</a>
+                        <div class="read list-left floatR"><span>20篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2187845" class="odd-overhidden floatL">Android</a>
+                        <div class="read list-left floatR"><span>7篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2254825" class="odd-overhidden floatL">电脑</a>
+                        <div class="read list-left floatR"><span>208篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2255505" class="odd-overhidden floatL">word</a>
+                        <div class="read list-left floatR"><span>17篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2258865" class="odd-overhidden floatL">Java</a>
+                        <div class="read list-left floatR"><span>73篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2259167" class="odd-overhidden floatL">C#</a>
+                        <div class="read list-left floatR"><span>6篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2281553" class="odd-overhidden floatL">智能手机</a>
+                        <div class="read list-left floatR"><span>1篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2320387" class="odd-overhidden floatL">struts</a>
+                        <div class="read list-left floatR"><span>4篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2332781" class="odd-overhidden floatL">数据库</a>
+                        <div class="read list-left floatR"><span>16篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2342249" class="odd-overhidden floatL">C++</a>
+                        <div class="read list-left floatR"><span>157篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2342251" class="odd-overhidden floatL">VS2008</a>
+                        <div class="read list-left floatR"><span>9篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2342439" class="odd-overhidden floatL">MFC</a>
+                        <div class="read list-left floatR"><span>65篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2356933" class="odd-overhidden floatL">Windows</a>
+                        <div class="read list-left floatR"><span>21篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2393415" class="odd-overhidden floatL">AutoCAD</a>
+                        <div class="read list-left floatR"><span>30篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2401769" class="odd-overhidden floatL">bat</a>
+                        <div class="read list-left floatR"><span>15篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2405705" class="odd-overhidden floatL">字符串</a>
+                        <div class="read list-left floatR"><span>2篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2466199" class="odd-overhidden floatL">ObjectARX</a>
+                        <div class="read list-left floatR"><span>25篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/2813911" class="odd-overhidden floatL">R语言</a>
+                        <div class="read list-left floatR"><span>39篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/3273817" class="odd-overhidden floatL">Ansys</a>
+                        <div class="read list-left floatR"><span>9篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/5754049" class="odd-overhidden floatL">生活</a>
+                        <div class="read list-left floatR"><span>55篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/5791543" class="odd-overhidden floatL">笔试</a>
+                        <div class="read list-left floatR"><span>45篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/5803001" class="odd-overhidden floatL">算法</a>
+                        <div class="read list-left floatR"><span>37篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/6040962" class="odd-overhidden floatL">Git</a>
+                        <div class="read list-left floatR"><span>2篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/sanqima/article/category/6052658" class="odd-overhidden floatL">Python编程</a>
+                        <div class="read list-left floatR"><span>12篇</span></div>
+                    </li>
+                            </ul>
+            <div class="unfold-btn">
+              <span>展开</span><i class="icon iconfont icon-xiajiantou"></i>
+            </div>
+        </div>
+    <!--    [StartShowSelfColumn]-->
+    <!--    [EndShowSelfColumn]-->
+            <div class="user-hotArticle sort timeSort">
+          <h3>文章存档</h3>
+          <ul class="hotArticle-list timeSort-list">
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2018/01" class="odd-overhidden floatL">2018年1月</a>
+                  <div class="read list-left floatR"><span>1篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2017/12" class="odd-overhidden floatL">2017年12月</a>
+                  <div class="read list-left floatR"><span>2篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2017/08" class="odd-overhidden floatL">2017年8月</a>
+                  <div class="read list-left floatR"><span>1篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2017/07" class="odd-overhidden floatL">2017年7月</a>
+                  <div class="read list-left floatR"><span>2篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2017/06" class="odd-overhidden floatL">2017年6月</a>
+                  <div class="read list-left floatR"><span>1篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2017/05" class="odd-overhidden floatL">2017年5月</a>
+                  <div class="read list-left floatR"><span>2篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2017/04" class="odd-overhidden floatL">2017年4月</a>
+                  <div class="read list-left floatR"><span>1篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2017/03" class="odd-overhidden floatL">2017年3月</a>
+                  <div class="read list-left floatR"><span>4篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2017/02" class="odd-overhidden floatL">2017年2月</a>
+                  <div class="read list-left floatR"><span>1篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2016/08" class="odd-overhidden floatL">2016年8月</a>
+                  <div class="read list-left floatR"><span>1篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2016/06" class="odd-overhidden floatL">2016年6月</a>
+                  <div class="read list-left floatR"><span>3篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2016/05" class="odd-overhidden floatL">2016年5月</a>
+                  <div class="read list-left floatR"><span>13篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2016/04" class="odd-overhidden floatL">2016年4月</a>
+                  <div class="read list-left floatR"><span>11篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2016/03" class="odd-overhidden floatL">2016年3月</a>
+                  <div class="read list-left floatR"><span>9篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2016/02" class="odd-overhidden floatL">2016年2月</a>
+                  <div class="read list-left floatR"><span>2篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2016/01" class="odd-overhidden floatL">2016年1月</a>
+                  <div class="read list-left floatR"><span>9篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2015/12" class="odd-overhidden floatL">2015年12月</a>
+                  <div class="read list-left floatR"><span>24篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2015/11" class="odd-overhidden floatL">2015年11月</a>
+                  <div class="read list-left floatR"><span>13篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2015/10" class="odd-overhidden floatL">2015年10月</a>
+                  <div class="read list-left floatR"><span>27篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2015/09" class="odd-overhidden floatL">2015年9月</a>
+                  <div class="read list-left floatR"><span>43篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2015/08" class="odd-overhidden floatL">2015年8月</a>
+                  <div class="read list-left floatR"><span>13篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2015/07" class="odd-overhidden floatL">2015年7月</a>
+                  <div class="read list-left floatR"><span>5篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2015/06" class="odd-overhidden floatL">2015年6月</a>
+                  <div class="read list-left floatR"><span>1篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2015/05" class="odd-overhidden floatL">2015年5月</a>
+                  <div class="read list-left floatR"><span>5篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2015/04" class="odd-overhidden floatL">2015年4月</a>
+                  <div class="read list-left floatR"><span>10篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2015/03" class="odd-overhidden floatL">2015年3月</a>
+                  <div class="read list-left floatR"><span>6篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2015/01" class="odd-overhidden floatL">2015年1月</a>
+                  <div class="read list-left floatR"><span>24篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2014/12" class="odd-overhidden floatL">2014年12月</a>
+                  <div class="read list-left floatR"><span>12篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2014/11" class="odd-overhidden floatL">2014年11月</a>
+                  <div class="read list-left floatR"><span>3篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2014/10" class="odd-overhidden floatL">2014年10月</a>
+                  <div class="read list-left floatR"><span>6篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2014/09" class="odd-overhidden floatL">2014年9月</a>
+                  <div class="read list-left floatR"><span>12篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2014/08" class="odd-overhidden floatL">2014年8月</a>
+                  <div class="read list-left floatR"><span>14篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2014/07" class="odd-overhidden floatL">2014年7月</a>
+                  <div class="read list-left floatR"><span>47篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2014/06" class="odd-overhidden floatL">2014年6月</a>
+                  <div class="read list-left floatR"><span>66篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2014/05" class="odd-overhidden floatL">2014年5月</a>
+                  <div class="read list-left floatR"><span>73篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2014/04" class="odd-overhidden floatL">2014年4月</a>
+                  <div class="read list-left floatR"><span>37篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2014/03" class="odd-overhidden floatL">2014年3月</a>
+                  <div class="read list-left floatR"><span>5篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2014/02" class="odd-overhidden floatL">2014年2月</a>
+                  <div class="read list-left floatR"><span>7篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2014/01" class="odd-overhidden floatL">2014年1月</a>
+                  <div class="read list-left floatR"><span>1篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2012/04" class="odd-overhidden floatL">2012年4月</a>
+                  <div class="read list-left floatR"><span>3篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/sanqima/article/month/2011/11" class="odd-overhidden floatL">2011年11月</a>
+                  <div class="read list-left floatR"><span>2篇</span></div>
+                </li>
+                      </ul>
+          <div class="unfold-btn">
+            <span>展开</span><i class="icon iconfont icon-xiajiantou"></i>
+          </div>
+        </div>
+        <div class="user-hotArticle">
+        <h3>他的热门文章</h3>
+        <ul class="hotArticle-list csdn-tracking-statistics tracking-click" data-mod="popu_521">
+<!--            [StartHotArticles]-->
+                                                <li>
+                        <a href="http://blog.csdn.net/sanqima/article/details/50530996">WPS中设置一级、二级、三级标题以及正文和目录</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>30542</span></div>
+                    </li>
+                                    <li>
+                        <a href="http://blog.csdn.net/sanqima/article/details/49508631">R语言读取txt文件中的内容</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>21381</span></div>
+                    </li>
+                                    <li>
+                        <a href="http://blog.csdn.net/sanqima/article/details/50965439">在Python里安装Jieba中文分词组件</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>16059</span></div>
+                    </li>
+                                    <li>
+                        <a href="http://blog.csdn.net/sanqima/article/details/51339341">解决RStudio中&quot;plot.new() : figure margins too large&quot;问题</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>12426</span></div>
+                    </li>
+                                    <li>
+                        <a href="http://blog.csdn.net/sanqima/article/details/50467154">使用Notepad++来比较文件</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>10217</span></div>
+                    </li>
+                            <!--            [EndHotArticles]-->
+        </ul>
+    </div>
+
+<!--    [startcustom]-->
+    <!--    [endcustom]-->
+  <div class="fixRight_box" style="height:256px">
+    <div class="fixRight">
+                    <!--u3163270-->
+            <script type="text/javascript" src="//cee1.iteye.com/avneunkwb.js"></script>
+              <div class="copyright csdn-tracking-statistics" data-mod="popu_475" data-dsm="post">
+        <h3 class="feed_new_tit"><span class="line"></span><span class="txt">联系我们</span></h3>
+        <ul class="feed_contact">
+          <li>
+            <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2431299880&amp;site=qq&amp;menu=yes" target="_blank">
+              <span class="ico"><i class="icon iconfont icon-QQ"></i></span>
+              <span class="txt">网站客服</span>
+            </a>
+          </li>
+          <li class="clearfix">
+            <a href="http://e.weibo.com/csdnsupport/profile" target="_blank">
+              <span class="ico"><i class="icon iconfont icon-xinlang"></i></span>
+              <span class="txt">微博客服</span>
+            </a>
+          </li>
+          <li class="clearfix">
+            <a href="mailto:webmaster@csdn.net" target="_blank">
+              <span class="ico"><i class="icon iconfont icon-mail"></i></span>
+              <span class="txt">webmaster@csdn.net</span>
+            </a>
+          </li>
+          <li class="clearfix">
+            <span class="ico"><i class="icon iconfont icon-call"></i></span>
+            <span class="txt">400-660-0108</span>
+          </li>
+        </ul>
+        <div class="feed_copyright">
+          <p><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP证09002463号</a></p>
+          <p><a href="http://www.csdn.net/company/about.html" target="_blank">关于</a>|<a href="http://www.csdn.net/company/recruit.html" target="_blank">招聘</a>|<a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a></p>
+          <p><img src="//feed.csdn.net/images/ali.png" alt="ali" title="ali"></p>
+          <p>Copyright © 1999-2018</p>
+          <p>CSDN.NET, All Rights Reserved</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside></div>
+
+<div class="left_fixed">
+    <div class="left_show_button">
+        <span>
+          <i class="icon iconfont icon-youjiantou"></i>
+        </span>
+    </div>
+    <ul class="left_menu" id="share_box">
+        <li>
+            <button class="left-fixed-btn btn-like csdn-tracking-statistics tracking-click" data-mod="popu_373" target="_self" title="点赞">
+                <a href="javascript:void(0);" class="iconbox border_red" ><i class="icon iconfont icon-dianzan"></i></a>
+                <a class="txt" href="javascript:void(0);">0</a>
+            </button>
+        </li>
+        <li id="blog_artical_directory">
+            <button class="left-fixed-btn left_menu_btn csdn-tracking-statistics tracking-click" data-mod="popu_372" target="_self" title="目录">
+                <a href="javascript:void(0);" class="iconbox border_black" ><i class="icon iconfont icon-mulu"></i></a>
+            </button>
+        </li>
+        <li class="menu_con">
+            <div class="list_father">
+                <div class="arr_box">
+                    <button class="btn-noborder arr-btn scroll-down  left_scroll_down"><i class="icon iconfont icon-xiajiantou"></i></button>
+                    <button class="btn-noborder arr-btn scroll-up left_scroll_top"><i class="icon iconfont icon-shangjiantou"></i></button>
+                </div>
+                <div class="arr"></div>
+                <div id="csdnBlogDir"></div>
+            </div>
+        </li>
+        <!--        <li>-->
+        <!--            <button class="left-fixed-btn btn-like tracking-ad" data-mod="popu_373" target="_self">-->
+        <!--                <span class="iconbox border_red"><i class="icon iconfont icon-xihuan-"></i></span>-->
+        <!--                <span class="txt">喜欢</span>-->
+        <!--                <span class="untxt">取消喜欢</span>-->
+        <!--            </button>-->
+        <!--        </li>-->
+        <li>
+            <button class="left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_374"  id="com-quick-collect" target="_self" title="收藏">
+                <a href="javascript:void(0);" class="iconbox border_purple" ><i class="icon iconfont icon-shoucang"></i></a>
+            </button>
+        </li>
+        <li>
+            <button class="left-fixed-btn btn-pinglun csdn-tracking-statistics tracking-click" data-mod="popu_544" title="评论">
+                <a href="javascript:void(0);" class="iconbox border_purple" ><i class="icon iconfont icon-pinglun"></i></a>
+            </button>
+        </li>
+        <li class="bdsharebuttonbox">
+          <button class="outside left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_172" title="分享到新浪微博">
+                <span class="iconbox border_red2"><i class="icon iconfont icon-xinlang"></i></span>
+                <a href="#" class="bds_tsina" data-cmd="tsina" > </a>
+          </button>
+        </li>
+        <li class="bdsharebuttonbox">
+          <button class="outside left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_172" title="分享到微信">
+              <span class="iconbox border_green"><i class="icon iconfont icon-weixin"></i></span>
+              <a href="#" class="bds_weixin" data-cmd="weixin" > </a>
+          </button>
+        </li>
+        <li class="bdsharebuttonbox">
+          <button class="outside left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_172" title="分享到QQ空间">
+              <span class="iconbox border_blue"><i class="icon iconfont icon-QQ"></i></span>
+              <a href="#" class="bds_qzone" data-cmd="qzone" > </a>
+          </button>
+        </li>
+        <li id="share_box">
+            
+            <div class="bdsharebuttonbox csdn-tracking-statistics tracking-click" data-mod="popu_172">
+                
+                
+                
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="right_fixed">
+    <div class="r_ico">
+        <i class="icon iconfont icon-jubao"></i>
+        <span class="txt" id="reportBtn">内容举报</span>
+    </div>
+    <div class="returnTop">
+        <i class="icon iconfont icon-fanhuidingbu"></i>
+        <span>返回顶部</span>
+    </div>
+</div>
+<div id="pop_win"></div>
+<div id="popup_mask"></div>
+<div class="pop_CA_cover" ></div>
+<div class="pop pop_CA" >
+    <div class="CA_header">
+        收藏助手
+        <span class="cancel_icon"  id="fapancle" ></span>
+    </div>
+    <iframe src="" id="collectIframe" frameborder="0" width="100%" height="360"  scrolling="no" ></iframe>
+</div>
+<!--举报-->
+<div id="report_dialog" style="top: 250px; left: 343.5px;"><div id="panel_report">
+    <div class="panel_head">不良信息举报</div>
+    <form method="post" id="frmReport" class="panel_body">
+        <table border="0" cellpadding="0" cellspacing="4" class="pop_table">
+            <tbody><tr><td colspan="2">您举报文章：<a href="http://blog.csdn.net/sanqima/article/details/35816883" target="_blank">正则表达式去掉非数字字符</a></td></tr>
+            <tr>
+                <th style="width:60px;">举报原因：</th>
+                <td id="panel_reporttype">
+                    <label><input type="radio" class="report_type" id="report_sex" name="report_type" value="1">色情</label>
+                    <label><input type="radio" class="report_type" id="report_Politics" name="report_type" value="2">政治</label>
+                    <label><input type="radio" class="report_type" id="report_copy" name="report_type" value="3">抄袭</label>
+                    <label><input type="radio" class="report_type" id="report_ad" name="report_type" value="4">广告</label>
+                    <label><input type="radio" class="report_type" id="report_want" name="report_type" value="5">招聘</label>
+                    <label><input type="radio" class="report_type" id="report_call" name="report_type" value="6">骂人</label>
+                    <br>
+                    <label><input type="radio" class="report_type" id="report_other" name="report_type" value="7">其他</label>
+                    <input type="text" name="report_other_content" id="report_other_content" maxlength="30" style="display: none;">
+                </td>
+            </tr>
+            <tr id="panel_originalurl" style="display: none;">
+                <th>原文地址：</th>
+                <td>
+                    <input id="originalurl" value="http://" name="originalurl" type="text" style="width: 90%;">
+                </td>
+            </tr>
+            <tr>
+                <th id="sp_reason">原因补充：</th>
+                <td>
+                    <textarea id="report_description" style="width: 300px;" rows="3" name="report_description"></textarea>
+                    <p id="sp_n" style="color:#999;margin:0px;padding:0px;">(最多只允许输入30个字)</p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="btnSubmitReport" name="submit" type="image" align="middle" class="btn_1" src="http://csdnimg.cn/release/phoenix/images/btn_submit.jpg">
+                    <span style="padding-left:20px;"></span>
+                    <img id="btnCloseReportDialog" src="http://csdnimg.cn/release/phoenix/images/btn_cancel.jpg" align="middle">
+                    <div id="error" style="color: Red">
+                    </div>
+                </td>
+            </tr>
+            </tbody></table>
+    </form>
+</div>
+    <script language="javascript" type="text/javascript">
+        var isComment=0;
+        //显示隐藏地址
+        $(function () {
+          console.log("version:phoenix");
+            if(isComment){
+                $("#report_description").attr("disabled",true);
+                $("#sp_n").hide();
+                $("#sp_reason").html("评论内容：");
+            }
+            $(".report_type").click(function () {
+                $("#panel_originalurl,#report_other_content").hide();
+                switch ($(this).val()) {
+                    case '3':
+                        $("#panel_originalurl").show();
+                        $("#originalurl").focus();
+                        break;
+                    case '7':
+                        if(isComment){
+                            $("#report_other_content").show().focus();
+                        }
+                        break;
+                }
+
+            });
+
+            $("#frmReport").submit(function () {
+                if (!currentUserName) {
+
+                    if (confirm("您的操作必须登录，是否登录？")) {
+                        location.href = "http://passport.csdn.net/account/login?from=" + encodeURIComponent(location.href);
+                        return false;
+                    }
+                    return false;
+                }
+
+                var reportType = $("input[name=report_type]:checked").val();
+                if(!reportType){
+                    alert("请选择举报原因！");
+                    return false;
+                }
+                var otherInfo = "";
+                switch (reportType) {
+                    case '3':
+                        otherInfo = $("#originalurl").val();
+                        if (otherInfo == ""||otherInfo=="http://") {
+                            alert("举报抄袭必须提供原创文章地址！");
+                            $("#originalurl").focus();
+                            return false;
+                        } else if(!checkeURL(otherInfo)) {
+                            alert("请输入正确的原创文章地址！");
+                            $("#originalurl").focus();
+                            return false;
+                        }
+                        break;
+                    case '7':
+                        otherInfo = $("#report_other_content").val();
+                        if (isComment && !otherInfo) {
+                            alert("请填写举报的具体原因！");
+                            $("#report_other_content").focus();
+                            return false;
+                        }
+                        if(!isComment){
+                            if(!$("#report_description").val()){
+                                alert("请填写举报的具体原因！");
+                                $("#report_description").focus();
+                                return false;
+                            }
+                        }
+                        break;
+                }
+                if(!isComment){
+                    if($("#report_description").val().length>30){
+                        alert("举报原因最多只允许输入30个字！");
+                        return false;
+                    }
+                }
+	            nowTime = {
+		            year: new Date().getFullYear(),
+		            month: parseInt(new Date().getMonth())+1,
+		            day: new Date().getDate(),
+		            hours: parseInt(new Date().getHours())+1,
+		            minutes: parseInt(new Date().getMinutes())+1,
+		            seconds: parseInt(new Date().getSeconds())+1
+	            };
+	            var data = {
+		            articleId: fileName,
+		            commentId: 0,
+		            reportType: reportType,
+		            originalurl: $("#originalurl").val(),
+		            report_other_content: $("#report_other_content").val(),
+		            report_description: $("#report_description").val(),
+		            currentUserName: currentUserName,
+		            updatetime: nowTime.year+'/'+nowTime.month+'/'+nowTime.day+' '+ nowTime.hours+':'+nowTime.minutes+':'+seconds,
+		            blogUser: username
+	            };
+	            if(!isComment){//如果是举报文章
+		            data.report_other_content = data.report_description;
+		            // data.report_description = "1. 神经网络这是一个常见的神经网络的图：这是一个常见的三层神经网络的基本构成，Layer L1是输入层，Layer L2是隐含层";
+	            }
+
+	            $.post(blog_address + "/common/report?id="+fileName+"&t=2", data, function (data) {
+		            if (data.result == 1){
+			            SetError("感谢您的举报，我们会尽快审核！");
+		            }else{
+			            if (data.content) alert(data.content);
+		            }
+
+	            });
+                return false;
+            });
+
+            $("#btnCloseReportDialog").click(function () {
+                CloseDiv();
+            });
+
+        });
+
+        //提示后关闭方法
+        function SetError(error) {
+            $("#btnCloseReportDialog").trigger("click");
+            alert(error);
+            CloseDiv();
+        }
+
+        //关闭方法
+        function CloseDiv() {
+
+            $.removeMask();
+            $("#report_dialog").hide();
+            return false;
+        }
+
+        //验证url
+        function checkeURL(url){
+            return /^http(s)?:\/\/([\w-]+\.)+[\w-]+/i.test(url);
+        }
+    </script>
+</div>
+<!--  fixme 后期清理掉  -->
+<div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+    <script id="adJs52b5334"></script>
+    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+</div>
+<script src="http://c.csdnimg.cn/public/common/libs/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://csdnimg.cn/release/phoenix/bower-libs/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+<!-- <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script> -->
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<script type="text/javascript" >
+    if($(".article_collect li").length==1){$(".article_collect").hide();}
+    if($(".article_tags li").length==1){$(".article_tags").hide();}
+    $(".edit a").attr("href","http://mp.blog.csdn.net/postedit/"+fileName);
+    $.each($(".edu_li a"),function(){$(this).attr("href",$(this).attr("href").replace("blog7","blog9"))});
+    new CNick('#uid').showNickname();
+
+    if($("#fan").html()=="")
+    {
+	    $("#fan").html(0);
+    }
+</script>
+<script src="http://c.csdnimg.cn/public/common/append_mark/appendMark.min.js?v=5.00.43" type="text/javascript"></script>
+<script type="text/javascript">
+    appendMark($('.recommend_list').children('a').find('dt'),$('.extension_other'))
+</script>
+<div class=""id="loginWrap"></div>
+<div class="" id="dlMask"></div>
+</body>

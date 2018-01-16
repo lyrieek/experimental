@@ -49,7 +49,7 @@ public class User {
 	public User(String userId) {
 		createDate = new Date();
 		try {
-			String html = TryGet.HTTP_CLIENT.getHTML("http://my.csdn.net/" + userId);
+			String html = TryGet.HTTP_CLIENT.get("http://my.csdn.net/" + userId);
 			Document doc = Jsoup.parse(html);
 			setUserId(userId);
 			setName(doc.getElementsByClass("person-nick-name").eq(0).text());

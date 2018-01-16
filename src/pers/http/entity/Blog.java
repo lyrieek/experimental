@@ -13,7 +13,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import pers.http.Template;
-import pers.th.util.FileReader;
+import pers.th.util.io.IOUtils;
 
 public class Blog implements Serializable {
 
@@ -112,7 +112,7 @@ public class Blog implements Serializable {
 		template.replace("${author}", author);
 		template.replace("${source}", url);
 		template.replace("${createDate}", format.format(createDate));
-		FileReader.writer(fileOutPath, template.toString());
+		IOUtils.wrtier(fileOutPath, template.toString());
 	}
 
 	@Override

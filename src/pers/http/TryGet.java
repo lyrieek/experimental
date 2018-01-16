@@ -5,22 +5,21 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import pers.http.entity.Blog;
-import pers.th.util.FileReader;
 import pers.th.util.http.HttpClient;
+import pers.th.util.io.IOUtils;
 
 public class TryGet {
 	public static final HttpClient HTTP_CLIENT = new HttpClient("src/request.properties");
 
 	public static final Template template = new Template(
-			FileReader.reader("G://th/CmsApplicationTest/src/html/csdn.html"));
+			IOUtils.reader("G://th/CmsApplicationTest/src/html/csdn.html"));
 
 	public static void main(String[] args) throws Exception {
-		// String html =
-		// getHTML("http://blog.csdn.net/sanqima/article/details/35816883");
-		// FileReader.writer("src/html/sanqima-35816883.html", html);
-		// Blog blog = Blog.read("src/html/qq_28379809-76196150.dat");
+//		String html = HTTP_CLIENT.get("http://blog.csdn.net/sanqima/article/details/35816883");
+//		FileReader.writer("src/html/sanqima-35816883.html", html);
+//		Blog blog = Blog.read("src/html/sanqima-35816883.dat");
 		// System.out.println(blog);
-		String html = FileReader.reader("src/html/sanqima-35816883.html");
+		String html = IOUtils.reader("src/html/sanqima-35816883.html");
 		Blog blog = new Blog();
 		blog.parse(html, "moneyshi", "http://blog.csdn.net/moneyshi/article/details/79013906");
 		blog.outputFile(template, "src/html/moneyshi-79013906-out.html");
@@ -54,7 +53,7 @@ public class TryGet {
 
 	public static void pullUserBlog(String userId) throws Exception {
 		for (int i = 1; i <= 3; i++) {
-			String result = HTTP_CLIENT.getHTML("http://blog.csdn.net/" + userId + "/article/list/" + i + "?t=1");
+			String result = HTTP_CLIENT.get("http://blog.csdn.net/" + userId + "/article/list/" + i + "?t=1");
 			if (trySplit(userId, result, "class=\"blog-unit\"")
 					|| trySplit(userId, result, "class=\"list_item article_item\"")) {
 				continue;
@@ -73,7 +72,7 @@ public class TryGet {
 			System.out.println(item);
 			String url = "http://blog.csdn.net/" + item;
 			Blog blog = new Blog();
-			blog.parse(HTTP_CLIENT.getHTML(url), userId, url);
+			blog.parse(HTTP_CLIENT.get(url), userId, url);
 			blog.outputFile(template,
 					"G://th/CmsApplicationTest/src/html/csdn-" + item.replace("/article/details/", "-") + ".html");
 		}

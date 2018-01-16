@@ -7,12 +7,12 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import pers.th.util.FileReader;
+import pers.th.util.io.IOUtils;
 
 public class UserManager {
 
 	private static final Set<String> users = new HashSet<>(
-			Arrays.asList(FileReader.reader("src/html/userlist").split(System.lineSeparator())));
+			Arrays.asList(IOUtils.reader("src/html/userlist").split(System.lineSeparator())));
 
 	public static void main(String[] args) {
 		for (String item : users) {

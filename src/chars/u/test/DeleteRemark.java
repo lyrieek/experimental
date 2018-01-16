@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chars.u.*;
-import pers.th.util.FileReader;
-
+import pers.th.util.io.IOUtils;
 public class DeleteRemark {
 
 //	@SuppressWarnings("resource")
@@ -38,7 +37,7 @@ public class DeleteRemark {
 		ContextComposite<ContextBlack> cc = new ContextComposite<>();
 		StatusManager status = new StatusManager();
 		PointReader pReader = new PointReader(
-				FileReader.reader("G:/th/CmsWebApp/client/app/transaction/transaction.js"), "\\S+|\\s+");
+				IOUtils.reader("G:/th/CmsWebApp/client/app/transaction/transaction.js"), "\\S+|\\s+");
 		while (pReader.pushRegex()) {
 			status.tempSave(pReader.item());
 			instance.init(pReader.getTextPoint());

@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import pers.th.util.io.IOUtils;
 
-import pers.th.util.FileReader;
 
 public class PointReader {
 
@@ -50,7 +50,7 @@ public class PointReader {
 			}
 		}
 		StatusManager status = new StatusManager();
-		PointReader pReader = new PointReader(FileReader.reader("src//pers//th//i18n.txt"), "\\S+");
+		PointReader pReader = new PointReader(IOUtils.reader("src//pers//th//i18n.txt"), "\\S+");
 		while (pReader.pushRegex()) {
 			String item = status.tempSave(pReader.item());
 			for (Function fun : ms) {
