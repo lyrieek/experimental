@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import pers.th.util.io.IOUtils;
+import pers.th.util.text.XStrings;
 
 public class UserManager {
 
@@ -30,6 +31,9 @@ public class UserManager {
 		try {
 			writer = new FileWriter(new File("src/html/userlist"));
 			for (String userItem : users) {
+				if (XStrings.isBlack(userItem)) {
+					continue;
+				}
 				writer.write(userItem + System.lineSeparator());
 				writer.flush();
 			}

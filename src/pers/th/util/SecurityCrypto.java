@@ -14,6 +14,8 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import pers.th.util.text.Base64;
+
 public class SecurityCrypto {
 
 	/**
