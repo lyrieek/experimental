@@ -1,0 +1,30 @@
+<component name="libraryTable">
+  <library name="commons-codec-1.9">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/commons-codec-1.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/commons-collections-3.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/commons-configuration-1.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/commons-fileupload-1.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/commons-io-2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/commons-lang3-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/commons-logging-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/commons-pool-1.5.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/fastjson-1.2.34.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/log4j-1.2.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/ojdbc6-11.2.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/spring-aop-4.1.7.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/spring-beans-4.1.7.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/spring-context-4.1.7.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/spring-core-4.1.7.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/spring-data-commons-1.11.6.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/spring-expression-4.1.7.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/spring-jdbc-4.1.7.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/spring-tx-4.1.7.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/spring-web-4.1.7.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/spring-webmvc-4.1.7.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/jsoup-1.10.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
