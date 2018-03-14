@@ -39,7 +39,6 @@ public class TryGet {
 		// for (String item : result) {
 		// System.out.println(item.substring(21,item.length() - 1));
 		// }
-
 		// pullUserBlog("u011054333");
 		// pullUserBlog("qq_30059235");
 	}
