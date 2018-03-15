@@ -17,7 +17,7 @@ public class UserService {
 //        um.add("u013083576");
 //        findUsers(IOUtils.reader("src/html/sanqima-35816883.html"));
 //        bbs();
-        for (int i = 38; i < 2950; i++) {
+        for (int i = 150; i < 2950; i++) {
             Thread.sleep((int)(Math.random() * 7000));
             System.out.println("sum = [" + aHref("https://bbs.csdn.net/forums/JavaScript?page="+i) + "] index="+i);
             um.sync();
