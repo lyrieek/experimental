@@ -17,12 +17,12 @@ public class UserService {
 //        um.add("u013083576");
 //        findUsers(IOUtils.reader("src/html/sanqima-35816883.html"));
 //        bbs();
-        for (int i = 150; i < 2950; i++) {
-            Thread.sleep((int)(Math.random() * 7000));
-            System.out.println("sum = [" + aHref("https://bbs.csdn.net/forums/JavaScript?page="+i) + "] index="+i);
+        for (int i = 7; i < 2951; i++) {
+            Thread.sleep((int)(Math.random() * 3000));
+            System.out.println("sum = [" + aHref("https://bbs.csdn.net/forums/Java?page="+i) + "] index="+i);
             um.sync();
         }
-        um.printf();
+//        um.printf();
 //        System.out.println("args = [" + HTTP_CLIENT.get("https://bbs.csdn.net/home") + "]");
     }
 

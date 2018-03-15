@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8f62c4fd-d867-4e9d-b896-f432a471378f" name="Default" comment="">
+    <list default="true" id="8f62c4fd-d867-4e9d-b896-f432a471378f" name="Default" comment="append user list">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/csdn/UserManager.java" afterPath="$PROJECT_DIR$/src/csdn/UserManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/csdn/UserService.java" afterPath="$PROJECT_DIR$/src/csdn/UserService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/html/userlist" afterPath="$PROJECT_DIR$/src/html/userlist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../master-basic/main/src/pers/th/util/text/XStrings.java" afterPath="$PROJECT_DIR$/../master-basic/main/src/pers/th/util/text/XStrings.java" />
@@ -23,8 +24,8 @@
       <file leaf-file-name="TryGet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/csdn/TryGet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="9" selection-end-column="90" />
+            <state relative-caret-position="408">
+              <caret line="23" column="24" lean-forward="true" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -32,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/csdn/UserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            <state relative-caret-position="273">
+              <caret line="31" column="26" lean-forward="true" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -44,15 +45,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserManager.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/csdn/UserManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="25" column="17" lean-forward="true" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+            <state relative-caret-position="25">
+              <caret line="20" column="43" lean-forward="true" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1257#1258#0" expanded="true" />
-                <element signature="e#1284#1285#0" expanded="true" />
+                <element signature="e#1251#1252#0" expanded="true" />
+                <element signature="e#1278#1279#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,6 +74,13 @@
       <find>2530</find>
       <find>user-detail</find>
       <find>qq_35289210</find>
+      <find>fhqnui888</find>
+      <find>aptx4869</find>
+      <find>520</find>
+      <find>shen</find>
+      <find>haoshen</find>
+      <find>shabi</find>
+      <find>Inhibitory</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -92,9 +100,9 @@
         <option value="$PROJECT_DIR$/src/pers/http/TryGet.java" />
         <option value="$PROJECT_DIR$/WebContent/WEB-INF/lib/jsoup-1.10.3.jar!/org/jsoup/nodes/Element.class" />
         <option value="$PROJECT_DIR$/../master-basic/main/src/pers/th/util/text/XStrings.java" />
-        <option value="$PROJECT_DIR$/src/csdn/UserManager.java" />
-        <option value="$PROJECT_DIR$/src/html/userlist" />
         <option value="$PROJECT_DIR$/src/csdn/UserService.java" />
+        <option value="$PROJECT_DIR$/src/html/userlist" />
+        <option value="$PROJECT_DIR$/src/csdn/UserManager.java" />
       </list>
     </option>
   </component>
@@ -751,7 +759,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1521012039131</updated>
-      <workItem from="1521012042535" duration="10154000" />
+      <workItem from="1521012042535" duration="15196000" />
     </task>
     <task id="LOCAL-00001" summary="test use idea">
       <created>1521013206535</created>
@@ -788,11 +796,18 @@
       <option name="project" value="LOCAL" />
       <updated>1521083633914</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="append user list">
+      <created>1521084111768</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1521084111768</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10154000" />
+    <option name="totallyTimeSpent" value="15196000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -807,6 +822,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -842,7 +858,8 @@
     <MESSAGE value="test use idea" />
     <MESSAGE value="append README.md" />
     <MESSAGE value="improve csdn user get" />
-    <option name="LAST_COMMIT_MESSAGE" value="improve csdn user get" />
+    <MESSAGE value="append user list" />
+    <option name="LAST_COMMIT_MESSAGE" value="append user list" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -934,16 +951,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/csdn/TryGet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="9" selection-end-column="90" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/html/user-detail">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -960,32 +967,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/csdn/UserManager.java">
+    <entry file="file://$PROJECT_DIR$/src/csdn/TryGet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="25" column="17" lean-forward="true" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+        <state relative-caret-position="408">
+          <caret line="23" column="24" lean-forward="true" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1257#1258#0" expanded="true" />
-            <element signature="e#1284#1285#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/csdn/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="31" column="26" lean-forward="true" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/html/userlist">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="6747" column="0" lean-forward="true" selection-start-line="6747" selection-start-column="0" selection-end-line="6747" selection-end-column="0" />
+        <state relative-caret-position="225">
+          <caret line="166675" column="10" lean-forward="true" selection-start-line="166675" selection-start-column="10" selection-end-line="166675" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/csdn/UserService.java">
+    <entry file="file://$PROJECT_DIR$/src/csdn/UserManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state relative-caret-position="25">
+          <caret line="20" column="43" lean-forward="true" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1251#1252#0" expanded="true" />
+            <element signature="e#1278#1279#0" expanded="true" />
           </folding>
         </state>
       </provider>

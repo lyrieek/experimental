@@ -15,19 +15,18 @@ public class UserManager {
     private static final Set<String> users = new HashSet<>(
             Arrays.asList(IOUtils.reader("src/html/userlist").split(System.lineSeparator())));
 
-    private static final String URLPREFIX = "//my.csdn.net/";
+    private static final String URL_PREFIX = "//my.csdn.net/";
 
     public int add(String param) {
-        if (XStrings.notEmpty(param) && param.matches("[a-zA-Z0-9_-]+")) {
-            System.out.println("new [" + param + "]");
-            users.add(param);
+        if (XStrings.notEmpty(param) && param.matches("[a-zA-Z0-9_-]+") && users.add(param)) {
+            System.out.println("new ['" + param + "']");
             return 1;
         }
         return 0;
     }
 
     public int analysis(String url){
-        if (url.startsWith(URLPREFIX)) {
+        if (url.startsWith(URL_PREFIX)) {
             return add(url.substring(14));
         }
         return 0;
