@@ -107,7 +107,7 @@ public class Blog implements Serializable {
 		template.replace("${author}", author);
 		template.replace("${source}", url);
 		template.replace("${createDate}", format.format(createDate));
-		IOUtils.wrtier(fileOutPath, template.toString());
+		IOUtils.write(fileOutPath, template.toString());
 	}
 
 	@Override

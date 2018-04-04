@@ -1,18 +1,19 @@
 package csdn.entity;
 
+import csdn.TryGet;
+import csdn.UserManager;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+import pers.th.util.date.DateFormatter;
+import pers.th.util.text.XStrings;
+
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-
-import csdn.TryGet;
-import csdn.UserManager;
-import pers.th.util.date.DateFormat;
-import pers.th.util.text.XStrings;
+;
 
 /**
  * 用户资料收集
@@ -146,11 +147,11 @@ public class User {
 	@Override
 	public String toString() {
 		if (name == null) {
-			return "[userId=" + userId + ", remark=" + remark + ", createDate=" + DateFormat.DEFAULT.format(createDate)
+			return "[userId=" + userId + ", remark=" + remark + ", createDate=" + DateFormatter.toDateString(createDate)
 					+ "]";
 		}
 		return "[userId=" + userId + ", name=" + name + ", follower=" + watch + ", watch=" + follower + ", detail="
-				+ detail + ", createDate=" + DateFormat.DEFAULT.format(createDate) + "]";
+				+ detail + ", createDate=" + DateFormatter.toDateString(createDate) + "]";
 	}
 
 	public static void main(String[] args) throws Exception {
