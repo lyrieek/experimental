@@ -13,7 +13,7 @@ public class OutWebAppModel {
 	private static FileTool ft;
 
 	public static void main(String[] args) {
-		args = new String[]{"memberReport"};
+		args = new String[]{"form"};
 		if (args.length!=1) {
 			System.out.println("input a param");
 			return;
